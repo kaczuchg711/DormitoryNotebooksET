@@ -20,11 +20,12 @@
 		</div>
 
 		<div class="login">
-			<form class="login" action="?page=login" method="POST">
+			<form class="login" action="log_in" method="POST">{% csrf_token %}
 				<h3 id="login">Logowanie</h3>
 				<p>Akademik</p>
 
 				<select>
+{#                    here will be dorms loaded from table from db #}
 					<option>DS1 Rumcajs</option>
 					<option>DS2 Leon</option>
 					<option>DS3 Bartek</option>
@@ -33,13 +34,13 @@
 				</select>
 
 				<p>e-mail</p>
-				<input id="email" name="email" type="text" placeholder="email@email.com" onfocusout="check_login()">
+				<input id="login" name="username" type="text" placeholder="email@email.com" onfocusout="check_login()">
 
 				<div id="ajax_result">
 				</div>
 
 				<p id="haslo">hasło</p>
-				<input name="password" placeholder="password" type="password">
+				<input id="password" name="password" placeholder="password" type="password">
 
 				<button type="submit" class="btn btn-primary">Zaloguj</button>
 
@@ -51,9 +52,7 @@
 				<button class="btn btn-outline-primary" id="registration_button">Zarejstruj</button>
 
 			</div>
-
 		</div>
 	</div>
-
 </body>
 </html>
