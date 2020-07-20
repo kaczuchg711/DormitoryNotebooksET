@@ -18,7 +18,6 @@ from django.shortcuts import redirect
 from django.urls import path
 from django.contrib.auth import views as auth_views
 import home.views as homeViews
-from registartion import views as sec_views
 
 
 
