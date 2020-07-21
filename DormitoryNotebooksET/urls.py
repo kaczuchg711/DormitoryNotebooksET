@@ -17,17 +17,15 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path
 from django.contrib.auth import views as auth_views
-import home.views as homeViews
 
-
-
-
+from home import views as homeViews
+from registration import views as registrationViews
 
 urlpatterns = [
-    path('', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
-    path('home',homeViews.show_home , name='home'),
+    path('', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='start Page'),
+    path('home/', homeViews.show_home, name='login' ),
     path('admin/', admin.site.urls),
-    path('log_in/', auth_views.LoginView.as_view(template_name='home/home.html'), name='log_in'),
-    path('log_in', auth_views.LoginView.as_view(template_name='home/home.html'), name='log_in'),
-    path('log_out/', auth_views.LogoutView.as_view(template_name='registration/login.html'),name='log_out'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='registration/login.html'), name='log_out'),
+    path('login/', registrationViews.log_in, name='login' ),
+
 ]
