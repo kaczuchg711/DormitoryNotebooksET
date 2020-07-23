@@ -21,137 +21,130 @@ body
     background: linear-gradient(180deg, rgba(8, 82, 166, 1) 0%, rgba(0, 87, 187, 1) 0%, rgba(255, 255, 255, 1)) fixed;
 }
 
-h2
-{
-    color: white;
-    text-align: center;
-    margin: 2em;
-}
+/*div.container*/
+/*{*/
+/*    display: grid;*/
+/*    grid-template-columns: 50% 50%;*/
+/*    padding: 0;*/
+/*}*/
 
-div.container
-{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    padding: 0;
-}
+/*div.logo*/
+/*{*/
+/*    display: grid;*/
+/*}*/
 
-div.logo
-{
-    display: grid;
-}
+/*div.logo img*/
+/*{*/
+/*    width: 50%;*/
+/*    height: 60%;*/
 
-div.logo img
-{
-    width: 50%;
-    height: 60%;
+/*    padding: 30px;*/
+/*    position: relative;*/
+/*    left: 50%;*/
+/*    top: 50%;*/
+/*    -webkit-transform: translate(-50%, -50%);*/
+/*    transform: translate(-50%, -50%);*/
+/*}*/
 
-    padding: 30px;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
+/*div.login*/
+/*{*/
+/*    height: 100%;*/
+/*    width: 60%;*/
+/*    background: white;*/
+/*    border-radius: 2em;*/
+/*    padding: 2em 2em 3em;*/
+/*    margin-left: auto;*/
+/*    align-content: center;*/
+/*    border-style: solid;*/
+/*    border-width: 0.15em;*/
+/*}*/
 
-div.login
-{
-    height: 100%;
-    width: 60%;
-    background: white;
-    border-radius: 2em;
-    padding: 2em 2em 3em;
-    margin-left: auto;
-    align-content: center;
-    border-style: solid;
-    border-width: 0.15em;
-}
+/*form.login > **/
+/*{*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
 
-form.login > *
-{
-    margin: 0;
-    padding: 0;
-}
+/*form.login input, form.login select, form.login button*/
+/*{*/
+/*    width: 100%;*/
+/*}*/
 
-form.login input, form.login select, form.login button
-{
-    width: 100%;
-}
+/*form.login button*/
+/*{*/
+/*    margin: 5% 0 5% 0;*/
+/*}*/
 
-form.login button
-{
-    margin: 5% 0 5% 0;
-}
+/*form.login > p*/
+/*{*/
+/*    padding: 1em 0em 0em 0em;*/
+/*}*/
 
-form.login > p
-{
-    padding: 1em 0em 0em 0em;
-}
+/*div.registration_blue_bar*/
+/*{*/
+/*    display: grid;*/
+/*    grid-template-columns: 1.5fr 1fr;*/
+/*    color: white;*/
+/*    align-content: center;*/
+/*    padding: 0em 0.5em 0em;*/
+/*    background: rgb(0, 123, 255);*/
+/*}*/
 
-div.registration_blue_bar
-{
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    color: white;
-    align-content: center;
-    padding: 0em 0.5em 0em;
-    background: rgb(0, 123, 255);
-}
+/*div.registration_blue_bar p*/
+/*{*/
+/*    margin-top: 10%;*/
+/*    align-content: center;*/
+/*    font-size: 90%;*/
+/*}*/
 
-div.registration_blue_bar p
-{
-    margin-top: 10%;
-    align-content: center;
-    font-size: 90%;
-}
+/*#registration_button*/
+/*{*/
+/*    color: white;*/
+/*    background: rgba(38, 153, 251, 1);*/
+/*    align-self: center;*/
 
-#registration_button
-{
-    color: white;
-    background: rgba(38, 153, 251, 1);
-    align-self: center;
+/*    max-width: 100%;*/
+/*    font-size: 80%;*/
+/*}*/
 
-    max-width: 100%;
-    font-size: 80%;
-}
+/*#registration_button:hover*/
+/*{*/
+/*    background: rgb(0, 105, 217);*/
+/*}*/
 
-#registration_button:hover
-{
-    background: rgb(0, 105, 217);
-}
-
-#ajax_result
-{
-    color: red;
-    min-height: 24px;
-}
-#haslo
-{
-    padding-top: 0px;
-}
+/*#ajax_result*/
+/*{*/
+/*    color: red;*/
+/*    min-height: 24px;*/
+/*}*/
+/*#haslo*/
+/*{*/
+/*    padding-top: 0px;*/
+/*}*/
 
 
 
-@media screen and (max-width: 1000px)
-{
-    body
-    {
-        font-size: 0.8em;
-    }
+/*@media screen and (max-width: 1000px)*/
+/*{*/
+/*    body*/
+/*    {*/
+/*        font-size: 0.8em;*/
+/*    }*/
 
-    div.container
-    {
-        display: flex;
-        flex-direction: column;
-    }
+/*    div.container*/
+/*    {*/
+/*        display: flex;*/
+/*        flex-direction: column;*/
+/*    }*/
 
-    div.logo
-    {
-        display: none;
-    }
+/*    div.logo*/
+/*    {*/
+/*        display: none;*/
+/*    }*/
 
-    div.login
-    {
-        margin-right: auto;
-    }
+/*    div.login*/
+/*    {*/
+/*        margin-right: auto;*/
+/*    }*/
 
-}
+/*}*/
