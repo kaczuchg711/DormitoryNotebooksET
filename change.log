@@ -1,3 +1,10 @@
+## [0.0.1] - 2020-07-29
+### Changed
+ - home,login view. Start using django templates engine.
+
+### Added
+ - main view
+
 ## [0.0.1] - 2020-07-21
 ### Added
  - login logout redirect if user is logout or no

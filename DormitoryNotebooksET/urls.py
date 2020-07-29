@@ -33,7 +33,7 @@ urlpatterns = [
     path('', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='start Page'),
     path('home/', homeViews.show_home, name='login' ),
     path('admin/', admin.site.urls),
-    path('logout/', auth_views.LogoutView.as_view(template_name='registration/login.html'), name='misie'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='registration/login.html'), name='logout'),
     path('login/', registrationViews.log_in, name='login' ),
     path('base/', base, name='base' ),
     path('child/', child, name='child' ),

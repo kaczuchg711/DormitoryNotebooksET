@@ -8,7 +8,6 @@
 
 {% block content %}
 <section class="home_buttons">
-
     <div class="container">
         <h2 class="col-sm-12 ">Witaj<br>Co chcesz zrobić ?</h2>
         <div class="row">
@@ -28,7 +27,7 @@
                 <button class="home-button">Wypożyczyć suszarkę</button>
             </div>
             <div class="col-sm-3">
-                <form action={% url 'misie' %} method="post">{% csrf_token %}
+                <form action={% url 'logout' %} method="post">{% csrf_token %}
                     <button class="home-button">wyloguj</button>
                 </form>
             </div>
