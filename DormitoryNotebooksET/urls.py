@@ -19,6 +19,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 
 from home import views as homeViews
+from rental import views as rentalViews
 from registration import views as registrationViews
 
 
@@ -28,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('logout/', auth_views.LogoutView.as_view(template_name='registration/login.html'), name='logout'),
     path('login/', registrationViews.log_in, name='login' ),
+    path('rent/', rentalViews.create_base_view, name='rent' ),
 ]
 
 

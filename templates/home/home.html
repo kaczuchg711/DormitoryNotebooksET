@@ -7,33 +7,35 @@
 {% endblock individual_head %}
 
 {% block content %}
-<section class="home_buttons">
-    <div class="container">
-        <h2 class="col-sm-12 ">Witaj<br>Co chcesz zrobić ?</h2>
-        <div class="row">
-            <div class="col-sm-3">
-                <button class="home-button">Skorzystać z pralni</button>
-            </div>
-            <div class="col-sm-3">
-                <button class="home-button">Zgłosić usterkę</button>
-            </div>
-            <div class="col-sm-3">
-                <button class="home-button">Wynająć salę z bilardem</button>
-            </div>
-            <div class="col-sm-3">
-                <button class="home-button">Wypożyczyć odkurzacz</button>
-            </div>
-            <div class="col-sm-3 offset-sm-3">
-                <button class="home-button">Wypożyczyć suszarkę</button>
-            </div>
-            <div class="col-sm-3">
-                <form action={% url 'logout' %} method="post">{% csrf_token %}
-                    <button class="home-button">wyloguj</button>
-                </form>
+    <section class="home_buttons">
+        <div class="container">
+            <h2 class="col-sm-12 ">Witaj<br>Co chcesz zrobić ?</h2>
+            <div class="row">
+                <div class="col-sm-3">
+                    <button class="home-button">Skorzystać z pralni</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="home-button">Zgłosić usterkę</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="home-button">Wynająć salę z bilardem</button>
+                </div>
+                <div class="col-sm-3">
+                    <form action={% url 'rent' %} method="post">{% csrf_token %}
+                        <button class="home-button">Wypożyczyć odkurzacz</button>
+                    </form>
+                </div>
+                <div class="col-sm-3 offset-sm-3">
+                    <button class="home-button">Wypożyczyć suszarkę</button>
+                </div>
+                <div class="col-sm-3">
+                    <form action={% url 'logout' %} method="post">{% csrf_token %}
+                        <button class="home-button">wyloguj</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 {% endblock content %}
 
