@@ -7,6 +7,7 @@
 {% endblock individual_head %}
 
 {% block content %}
+
     <section class="home_buttons">
         <div class="container">
             <h2 class="col-sm-12 ">Witaj<br>Co chcesz zrobić ?</h2>
@@ -21,7 +22,7 @@
                     <button class="home-button">Wynająć salę z bilardem</button>
                 </div>
                 <div class="col-sm-3">
-                    <form action={% url 'rent' %} method="post">{% csrf_token %}
+                    <form method="post" action={% url 'rent' %} >{% csrf_token %}
                         <button class="home-button">Wypożyczyć odkurzacz</button>
                     </form>
                 </div>
@@ -29,7 +30,7 @@
                     <button class="home-button">Wypożyczyć suszarkę</button>
                 </div>
                 <div class="col-sm-3">
-                    <form action={% url 'logout' %} method="post">{% csrf_token %}
+                    <form method="post" action={% url 'logout' %} >{% csrf_token %}
                         <button class="home-button">wyloguj</button>
                     </form>
                 </div>

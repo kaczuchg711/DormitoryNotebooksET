@@ -2,83 +2,62 @@
 {% load static %}
 
 {% block individual_head %}
-        <link rel="Stylesheet" type="text/css" href="{% static 'css/rental/rental.css' %}"/>
+    <link rel="Stylesheet" type="text/css" href="{% static 'css/rental/rental.css' %}"/>
     <title>home</title>
 {% endblock individual_head %}
 
 {% block content %}
-    <h2>Wypożyczalnia</h2>
-    <div class="table_container">
+    {% block data %}
+        {# TODO loading from back end #}
+        <h2>Wypożyczalnia</h2>
 
-        <table class="table table-striped text-center">
-            <thead>
-            <tr>
-                <th scope="col">data</th>
-                <th scope="col">imię</th>
-                <th scope="col">nazwisko</th>
-                <th scope="col">numer pokoju</th>
-                <th scope="col">godzina pobrania</th>
-                <th scope="col">godzina oddania</th>
-                <th scope="col">nr pralni</th>
-            </tr>
-            </thead>
+        <div class="table_container">
+            <table class="table table-striped text-center">
+                <thead>
+                <tr>
+                    <th scope="col">data</th>
+                    <th scope="col">imię</th>
+                    <th scope="col">nazwisko</th>
+                    <th scope="col">numer pokoju</th>
+                    <th scope="col">godzina pobrania</th>
+                    <th scope="col">godzina oddania</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>01-01-2020</td>
+                    <td>Ewelina</td>
+                    <td>Michalska</td>
+                    <td>206</td>
+                    <td>12:23</td>
+                    <td>12:34</td>
+                </tr>
+                <tr>
+                    <td>01-01-2020</td>
+                    <td>Ewelina</td>
+                    <td>Michalska</td>
+                    <td>206</td>
+                    <td>12:23</td>
+                    <td>-</td>
+                </tr>
+            </table>
+        </div>
 
-            <tr>
-                <td>01-01-2020</td>
-                <td>Ewelina</td>
-                <td>Michalska</td>
-                <td>206</td>
-                <td>12:23</td>
-                <td>12:34</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>01-01-2020</td>
-                <td>Ewelina</td>
-                <td>Michalska</td>
-                <td>206</td>
-                <td>12:23</td>
-                <td>-</td>
-                <td>1</td>
-            </tr>
+    {% endblock data %}
 
-
-       </table>
-
-
-    </div>
-    {##}
-    {#	<div class="small_container">#}
-    {##}
-    {#		<?php#}
-    {#			if($variables[2])#}
-    {#			{#}
-    {#				echo '<form  action="?page=cancel_laundry" method="post">';#}
-    {#				echo '<button class="btn btn-primary">anuluj</button>';#}
-    {#				echo '</form>';#}
-    {#			}#}
-    {#			else#}
-    {#			{#}
-    {#				echo '<p>wybierz pralnię</p>';#}
-    {#				echo '<form action="?page=book_laundry" method="post">';#}
-    {#				echo '<button class="btn btn-primary">rezerwuj</button>';#}
-    {#				echo '<select name="laundry_nr">';#}
-    {##}
-    {#				$array = $variables[1];#}
-    {##}
-    {#				foreach($array as $cel)#}
-    {#				{#}
-    {#					echo "<option>" . $cel . "</option>";#}
-    {#					echo $cel;#}
-    {#				}#}
-    {#				echo '</select>';#}
-    {#			}#}
-    {#		?>#}
-    {##}
-    {#		<br/>#}
-    {##}
-    {#		<p id="t"></p>#}
-    {#	</div>#}
-
+    {% block input %}
+        <section>
+            <div class="container input-container">
+                <div class="row">
+                    <select class="col-sm-6">
+                        <option value="" selected disabled hidden>Choose here</option>
+                        <option>nananan</option>
+                        <option>lalalala</option>
+                        <option>kakak</option>
+                    </select>
+                    <button class="col-sm-6 btn btn-primary ">zatwierdz</button>
+                </div>
+            </div>
+        </section>
+    {% endblock input %}
 
 {% endblock content %}
