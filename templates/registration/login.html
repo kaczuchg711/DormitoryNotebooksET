@@ -1,63 +1,63 @@
 {% extends "main.html" %}
 {% load static %}
 {% block individual_head %}
-    {#	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
-    {#	<script src="Public/js/login.js"></script>#}
+     <link rel="Stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
 {% endblock individual_head %}
 {% block content %}
 
     <h2>Akademikowe zeszyty</h2>
     <div class="container">
 
-    <section>
-        <div class="container">
-            <div class="row">
-                <div id="logo" class="col-sm-6">
-                    <img class="img-fluid rounded mx-auto d-block" src="{% static 'img/pk_logo.png' %}" alt="logo">
-                </div>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div id="logo" class="col-sm-6">
+                        <img class="img-fluid rounded mx-auto d-block" src="{% static 'img/pk_logo.png' %}" alt="logo">
+                    </div>
 
-                <div class="col-sm-6, login-form">
-                    <form action="login/" method="POST">{% csrf_token %}
-                        <h3>Logowanie</h3>
-                        <p>Akademik</p>
+                    <div class="col-sm-6, login-form">
+                        <form action="login/" method="POST">{% csrf_token %}
+                            <h3>Logowanie</h3>
+                            <p>Akademik</p>
 
-                        <select>
-                            {#                    here will be dorms loaded from table from db #}
-                            <option>DS1 Rumcajs</option>
-                            <option>DS2 Leon</option>
-                            <option>DS3 Bartek</option>
-                            <option>DS4 Balon</option>
-                            <option>DS B-1 Bydgoska</option>
-                        </select>
+                            <select>
+                                {#                    here will be dorms loaded from table from db #}
+                                <option>DS1 Rumcajs</option>
+                                <option>DS2 Leon</option>
+                                <option>DS3 Bartek</option>
+                                <option>DS4 Balon</option>
+                                <option>DS B-1 Bydgoska</option>
+                            </select>
 
-                        <p>e-mail</p>
-                        <input name="username" type="text" placeholder="email@email.com" onfocusout="check_login()">
+                            <p>e-mail</p>
+                            <input name="username" type="text" placeholder="email@email.com" onfocusout="check_login()">
 
-                        <div id="ajax_result">
+                            <div id="ajax_result">
+                            </div>
+
+                            <p>hasło</p>
+                            <input name="password" placeholder="password" type="password">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <p{% if message.tags %} class="{{ message.tags }} "
+                                                            style="color: red" {% endif %}>{{ message }}</p>
+                                {% endfor %}
+                            {% endif %}
+                            <br>
+                            <button type="submit" class="btn btn-primary">Zaloguj</button>
+
+                        </form>
+
+                        <div class="registration_blue_bar">
+
+                            <p>Nie masz konta ?</p>
+                            <button>Zarejstruj</button>
+
                         </div>
-
-                        <p>hasło</p>
-                        <input name="password" placeholder="password" type="password">
-                        {% if messages %}
-                            {% for message in messages %}
-                                <p{% if message.tags %} class="{{ message.tags }} "
-                                                        style="color: red" {% endif %}>{{ message }}</p>
-                            {% endfor %}
-                        {% endif %}
-                        <br>
-                        <button type="submit" class="btn btn-primary">Zaloguj</button>
-
-                    </form>
-
-                    <div class="registration_blue_bar">
-
-                        <p>Nie masz konta ?</p>
-                        <button>Zarejstruj</button>
-
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 {% endblock content %}
-</div>
+

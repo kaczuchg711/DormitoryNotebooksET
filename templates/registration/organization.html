@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% load static %}
+{% block individual_head %}
+    <title>organization</title>
+    <link rel="Stylesheet" type="text/css" href="{% static 'css/organization.css' %}"/>
+{% endblock individual_head %}
+{% block content %}
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-3">
+                    <form action="" method="post">{% csrf_token %}
+                        <img class="img-fluid rounded mx-auto d-block " src="{% static 'img/pk_logo.png' %}" alt="pk" id='pk'>
+                    </form>
+                </div>
+                <div class="col-sm-3">
+                    <form action="" method="post">{% csrf_token %}
+                        <img class="img-fluid rounded mx-auto d-block " src="{% static 'img/uj_logo.png' %}" alt="uj">
+                    </form>
+                </div>
+                <div class="col-sm-3">
+                    <form action="" method="post">{% csrf_token %}
+                        <img class="img-fluid rounded mx-auto d-block " src="{% static 'img/agh_logo.png' %}" alt="uj">
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock content %}

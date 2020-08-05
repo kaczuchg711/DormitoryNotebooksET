@@ -13,25 +13,7 @@ body {
     background: linear-gradient(180deg, rgba(8, 82, 166, 1) 0%, rgba(0, 87, 187, 1) 0%, rgba(255, 255, 255, 1)) fixed;
 }
 
-img {
-    margin-top: 10%;
-    width: 50%;
-}
 
-.login-form {
-    margin-left: auto;
-    margin-right: auto;
-    background: white;
-    border-radius: 2em;
-    padding: 2em 2em 3em;
-    border: solid;
-    border-width: 0.15em;
-}
-
-p {
-    margin-bottom: 0px;
-    margin-top: 10px;
-}
 
 h2 {
     color: white;

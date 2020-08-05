@@ -25,11 +25,12 @@ from registration import views as registrationViews
 
 urlpatterns = [
     path('', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='start Page'),
-    path('home/', homeViews.show_home, name='login' ),
+    path('home/', homeViews.show_home, name='home' ),
     path('admin/', admin.site.urls),
     path('logout/', auth_views.LogoutView.as_view(template_name='registration/login.html'), name='logout'),
-    path('login/', registrationViews.log_in, name='login' ),
+    path('login/', registrationViews.get_home_view_if_data_ok, name='login'),
     path('rent/', rentalViews.create_base_view, name='rent' ),
+    path('organization/', registrationViews.get_organization_view, name='organization' ),
 ]
 
 
