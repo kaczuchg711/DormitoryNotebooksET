@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+{% load static %}
+{% block individual_head %}
+    <title>organization</title>
+    <link rel="Stylesheet" type="text/css" href="{% static 'css/organization.css' %}"/>
+{% endblock individual_head %}
+{% block content %}
+    <div class="container">
+        <section>
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <form  action={% url 'set_organization' %} method="post">{% csrf_token %}
+                        <button value='pk' name='organization' class="btn bg-transparent ">
+                            <img  id='pk' class="img-fluid" src="{% static 'img/pk_logo.png' %}" alt="pk">
+                        </button>
+                    </form>
+                </div>
+
+                <div class="col-sm-4">
+                    <form action={% url 'set_organization' %} method="post">{% csrf_token %}
+                        <button value='uj' name='organization' class="btn bg-transparent">
+                            <img class="img-fluid" src="{% static 'img/uj_logo.png' %}" alt="uj">
+                        </button>
+                    </form>
+                </div>
+
+                <div class="col-sm-4">
+                    <form method="post" action={% url 'set_organization' %}>{% csrf_token %}
+                        <button value='agh' name='organization' class="btn bg-transparent">
+                            <img  id='agh' class="img-fluid" src="{% static 'img/agh_logo.png' %}" alt="uj">
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </div>
+{% endblock content %}

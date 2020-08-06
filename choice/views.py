@@ -5,6 +5,5 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 
 @login_required(redirect_field_name='',login_url='/')
-def show_home(request):
-    context = {'user': request.user.username}
-    return render(request, "home/home.html", context)
+def get_choice_view(request):
+    return render(request, "home/choice.html")

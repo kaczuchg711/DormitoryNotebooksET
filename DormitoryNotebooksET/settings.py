@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home',
+    'choice',
 ]
 
 MIDDLEWARE = [
@@ -122,4 +122,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = ( os.path.join('static'), )
 
 LOGOUT_REDIRECT_URL = "/"
-LOGIN_REDIRECT_URL = "/home"
+LOGIN_REDIRECT_URL = "/choice"
