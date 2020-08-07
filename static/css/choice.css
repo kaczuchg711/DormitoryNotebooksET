@@ -1,0 +1,16 @@
+.home-button {
+    background: radial-gradient(rgb(35, 147, 252), #1968aa, rgb(19, 77, 125), rgb(19, 77, 125));
+    border-radius: 16px;
+    width: 100%;
+    padding: 40% 10% 40% 10%;
+    margin-bottom: 10%;
+    color: white;
+    font-size: 80%;
+}
+
+
+
+.col-sm-6
+{
+    width: 10%;
+}

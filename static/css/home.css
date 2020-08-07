@@ -1,16 +1,20 @@
-.home-button {
-    background: radial-gradient(rgb(35, 147, 252), #1968aa, rgb(19, 77, 125), rgb(19, 77, 125));
-    border-radius: 16px;
-    width: 100%;
-    padding: 40% 10% 40% 10%;
-    margin-bottom: 10%;
-    color: white;
-    font-size: 80%;
+img {
+    margin-top: 10%;
+    width: 50%;
 }
 
 
+.login-form {
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    border-radius: 2em;
+    padding: 2em 2em 3em;
+    border: solid;
+    border-width: 0.15em;
+}
 
-.col-sm-6
-{
-    width: 10%;
+p {
+    margin-bottom: 0px;
+    margin-top: 10px;
 }
