@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'choice',
     'security',
     'rental',
+    'organizations',
 ]
 
 MIDDLEWARE = [

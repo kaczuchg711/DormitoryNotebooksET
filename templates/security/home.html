@@ -26,11 +26,9 @@
 
                             <select>
                                 {#Todo here will be dorms loaded from table from db #}
-                                <option>DS1 Rumcajs</option>
-                                <option>DS2 Leon</option>
-                                <option>DS3 Bartek</option>
-                                <option>DS4 Balon</option>
-                                <option>DS B-1 Bydgoska</option>
+                                {% for dormName in organizations_dorms_names %}
+                                    <option>{{ dormName }}</option>
+                                {% endfor %}
                             </select>
 
                             <p>e-mail</p>
