@@ -20,6 +20,7 @@ class Organization(models.Model):
         return acronyms
 
     def get_dorms_names(self):
+        # Todo make this clean
         organizationsDormitoriesIdsQS = Dorm_associative_Oraganaizor.objects.values('id_dorm').filter(
             id_organization=self.id)
         organizationsDormitoriesIds = [j['id_dorm'] for j in [i for i in organizationsDormitoriesIdsQS]]

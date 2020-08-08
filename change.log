@@ -1,3 +1,13 @@
+## [0.0.1] - 2020-08-08
+### Add
+ - organizations_dorm, organizations_dorm_associative_oraganaizor,organizations_organization tables
+ - organizations module
+ - dorms loaded from table from db in login view
+### Changed
+ - cut some elements from security to organizations
+### Removed
+    security tables
+
 ## [0.0.1] - 2020-08-06
 ### Changed
  - organization view loading organization from db
