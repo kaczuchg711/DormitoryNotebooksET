@@ -7,20 +7,10 @@
     <h2>Akademikowe zeszyty</h2>
     <div class="container">
 
-
-        {#        <div class="col-sm-4">#}
-        {#            <form action={% url 'set_organization' %} method="post">{% csrf_token %}#}
-        {#                <button value='pk' name='organization' class="btn bg-transparent ">#}
-        {#                    <img id='pk' class="img-fluid" src="{% static 'img/pk_logo.png' %}" alt="pk">#}
-        {#                </button>#}
-        {#            </form>#}
-        {#        </div>#}
-
         <section>
             <div class="container">
                 <div class="row">
                     <div id="logo" class="col-sm-6">
-                        {#Todo change logo#}
                         <form action={% url 'organization' %} method="post">{% csrf_token %}
                             <button name='organization' class="btn bg-transparent ">
                                 <img class="img-fluid rounded mx-auto d-block" src="{% static  organizationLogoPath %}"
