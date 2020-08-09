@@ -20,6 +20,12 @@ class Organization(models.Model):
         acronyms = change_QuerySet_from_db_to_list(querySet, 'acronym')
         return acronyms
 
+    @staticmethod
+    def organization_in_db(acronym):
+        acronyms = Organization.get_every_organizations_acronyms()
+        return True if acronym in acronyms else False
+
+
     def get_dorms_names(self):
         organizationsDormitoriesIdsQS = Associate_with_Dorms.objects.values('id_dorm').filter(id_organization=self.id)
         organizationsDormitoriesIds = change_QuerySet_from_db_to_list(organizationsDormitoriesIdsQS, 'id_dorm')
@@ -35,6 +41,8 @@ class Organization(models.Model):
 
     def get_id(self):
         return self.id
+
+
 
 
 class Dorm(models.Model):

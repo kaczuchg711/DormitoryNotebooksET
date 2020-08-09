@@ -23,11 +23,13 @@ def get_home_view(request):
 
 
 def set_organization(request):
-    # Todo validation we have this organization in db ?
     organizationAcronym = request.POST.get('organization')
-    organization = Organization.objects.filter(acronym=organizationAcronym)[0]
-    request.session['organization_id'] = organization.get_id()
-    return redirect('/')
+    if Organization.organization_in_db(organizationAcronym):
+        organization = Organization.objects.filter(acronym=organizationAcronym)[0]
+        request.session['organization_id'] = organization.get_id()
+        return redirect('/')
+    else:
+        return redirect('organization')
 
 
 def get_choice_view_if_data_ok(request):
