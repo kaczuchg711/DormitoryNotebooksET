@@ -15,8 +15,6 @@ def get_home_view(request):
     organization = Organization.objects.filter(id=organization_id)[0]
     organizations_dorms_names = organization.get_dorms_names()
 
-
-
     context = {
         'organizationLogoPath': "img/" + organization.acronym + "_logo.png",
         'organizations_dorms_names': organizations_dorms_names

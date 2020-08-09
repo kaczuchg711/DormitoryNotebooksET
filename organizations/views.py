@@ -6,7 +6,6 @@ from organizations.models import Organization
 
 def get_organization_view(request):
     context = _prepare_organization_data(request)
-    print(context)
     return render(request, template_name='security/organization.html', context=context)
 
 def _prepare_organization_data(request):
