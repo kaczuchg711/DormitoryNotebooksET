@@ -32,14 +32,22 @@ def set_organization(request):
         return redirect('organization')
 
 
-def get_choice_view_if_data_ok(request):
+def log_in(request):
     user = _get_authenticate_user(request)
-    if user is not None:
+
+    if _data_ok(user):
         login(request, user)
-        return redirect('/choice')
+        return redirect("/choice")
     else:
         messages.add_message(request, messages.INFO, "wrong password or e-mail")
-        return redirect('/')
+        return redirect("/")
+
+
+def _data_ok(user):
+    if user is not None:
+        return True
+    else:
+        return False
 
 
 def _get_authenticate_user(request):

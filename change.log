@@ -1,3 +1,7 @@
+## [0.0.1] - 2020-08-09
+### Add
+ - validation data in organization choosing
+
 ## [0.0.1] - 2020-08-08
 ### Add
  - organizations_dorm, organizations_dorm_associative_oraganaizor,organizations_organization tables
