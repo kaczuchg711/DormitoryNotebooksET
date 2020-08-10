@@ -21,22 +21,16 @@ from security import views as securityViews
 from organizations import views as organizationsViews
 from choice import views as choiceViews
 from rental import views as rentalViews
-
+from organizations.models import Organization
 urlpatterns = [
-    # path('', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='start Page'),
-    # path('choice/', homeViews.show_home, name='choice' ),
-    # path('logout/', auth_views.LogoutView.as_view(template_name='security/choice.html'), name='logout'),
-    # path('login/', securityViews.get_home_view_if_data_ok, name='login'),
-    #
-
-
-    # path('', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='start Page'),
+    # views
     path('', securityViews.get_home_view, name='index'),
     path('admin/', admin.site.urls),
-    path('login/', securityViews.log_in, name="login"),
-    path('logout/', authViews.LogoutView.as_view(template_name='security/home.html'), name='logout'),
     path('choice/', choiceViews.get_choice_view, name='choice'),
     path('rent/', rentalViews.create_base_view, name='rent'),
     path('organization/', organizationsViews.get_organization_view, name='organization'),
-    path('set_organization/', securityViews.set_organization, name='set_organization'),
+    # fun
+    path('set_organization/', Organization.set_organization, name='set_organization'),
+    path('login/', securityViews.log_in, name="login"),
+    path('logout/', authViews.LogoutView.as_view(template_name='security/home.html'), name='logout'),
 ]

@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+from django.shortcuts import redirect
+
 from global_fun import change_QuerySet_from_db_to_list
 
 
@@ -24,6 +26,16 @@ class Organization(models.Model):
     def organization_in_db(acronym):
         acronyms = Organization.get_every_organizations_acronyms()
         return True if acronym in acronyms else False
+
+    @staticmethod
+    def set_organization(request):
+        organizationAcronym = request.POST.get('organization')
+        if Organization.organization_in_db(organizationAcronym):
+            organization = Organization.objects.filter(acronym=organizationAcronym)[0]
+            request.session['organization_id'] = organization.get_id()
+            return redirect('/')
+        else:
+            return redirect('organization')
 
 
     def get_dorms_names(self):

@@ -12,6 +12,10 @@ def get_home_view(request):
     if request.session.get('organization_id') is None:
         return organizationsView.get_organization_view(request)
 
+    context = _prepare_context_data(organization_id)
+    return render(request, template_name='security/home.html', context=context)
+
+def _prepare_context_data(organization_id):
     organization = Organization.objects.filter(id=organization_id)[0]
     organizations_dorms_names = organization.get_dorms_names()
 
@@ -19,17 +23,10 @@ def get_home_view(request):
         'organizationLogoPath': "img/" + organization.acronym + "_logo.png",
         'organizations_dorms_names': organizations_dorms_names
     }
-    return render(request, template_name='security/home.html', context=context)
+    return context
 
 
-def set_organization(request):
-    organizationAcronym = request.POST.get('organization')
-    if Organization.organization_in_db(organizationAcronym):
-        organization = Organization.objects.filter(acronym=organizationAcronym)[0]
-        request.session['organization_id'] = organization.get_id()
-        return redirect('/')
-    else:
-        return redirect('organization')
+
 
 
 def log_in(request):
