@@ -21,34 +21,19 @@
 
                     <div class="col-sm-6, login-form">
                         <form action={% url "login" %} method=POST>{% csrf_token %}
-                            <h3>Logowanie</h3>
-                            <p>Akademik</p>
-
-                            <select>
-                                {% for dormName in organizations_dorms_names %}
-                                    <option>{{ dormName }}</option>
-                                {% endfor %}
-                            </select>
-
-                            <p>e-mail</p>
-                            <label>
-                                <input name="username" type="text" placeholder="email@email.com" onfocusout="check_login()">
-                            </label>
-
-                            <div id="ajax_result">
-                            </div>
-
-                            <p>hasło</p>
-                            <input name="password" placeholder="password" type="password">
-                            {% if messages %}
-                                {% for message in messages %}
-                                    <p{% if message.tags %} class="{{ message.tags }} "
-                                                            style="color: red" {% endif %}>{{ message }}</p>
-                                {% endfor %}
-                            {% endif %}
-                            <br>
-                            <button type="submit" class="btn btn-primary">Zaloguj</button>
-
+                            <label>Akademik</label><br>
+                            {{ form.dorms }} <br>
+                            <label>login</label><br>
+                            {{ form.login }} <br>
+                            <label>hasło</label><br>
+                            {{ form.password }} <br>
+                              {% if messages %}
+                                  {% for message in messages %}
+                                      <p{% if message.tags %} class="{{ message.tags }} "
+                                                              style="color: red" {% endif %}>{{ message }}</p>
+                                  {% endfor %}
+                              {% endif %}
+                            <input type="submit" value="Submit">
                         </form>
 
                         <div class="registration_blue_bar">
@@ -62,5 +47,7 @@
             </div>
         </section>
     </div>
+
+
 {% endblock content %}
 

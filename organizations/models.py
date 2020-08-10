@@ -55,10 +55,11 @@ class Organization(models.Model):
         return self.id
 
 
-
-
 class Dorm(models.Model):
     name = models.CharField(max_length=60)
+
+    def get_id(self):
+        return self.id
 
 
 class Associate_with_Dorms(models.Model):
