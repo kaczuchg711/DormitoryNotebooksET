@@ -38,6 +38,7 @@ class Organization(models.Model):
             return redirect('organization')
 
 
+
     def get_dorms_names(self):
         organizationsDormitoriesIdsQS = Associate_with_Dorms.objects.values('id_dorm').filter(id_organization=self.id)
         organizationsDormitoriesIds = change_QuerySet_from_db_to_list(organizationsDormitoriesIdsQS, 'id_dorm')
@@ -55,8 +56,22 @@ class Organization(models.Model):
         return self.id
 
 
+
 class Dorm(models.Model):
     name = models.CharField(max_length=60)
+
+    @staticmethod
+    def dorm_exist(dormName):
+        dorms = list(Dorm.objects.filter(name=dormName))
+        if len(dorms) != 0:
+            return True
+        return False
+
+    @staticmethod
+    def get_dorm_id(dormName):
+        dorms = list(Dorm.objects.filter(name=dormName))
+        return dorms[0].get_id()
+
 
     def get_id(self):
         return self.id

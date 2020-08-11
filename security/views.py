@@ -43,29 +43,37 @@ def _prepare_context_data(organization_id):
 
 def log_in(request):
     user = _get_authenticate_user(request)
+
     dormName = request.POST['dorms']
     organizationId = request.session.get("organization_id")
 
-    if _data_ok(user, dormName, organizationId):
+    if _data_ok(request, user):
         login(request, user)
         return redirect("/choice")
     else:
-        messages.add_message(request, messages.INFO, "wrong password or e-mail")
         return redirect("/")
 
 
-def _data_ok(user, dormName, organizationId):
-    # Todo if is supervisor or porter can go to organization
+def _data_ok(request, user):
+    # Todo if is supervisor or porter can go to organization with out dorm checking
+    #  learn permission in django
+    dormName = request.POST['dorms']
+    organizationId = request.session.get("organization_id")
     if user is not None:
-        # Todo make this clean this dorm exist ?
-        dorms = list(Dorm.objects.filter(name=dormName))
-        if len(dorms) != 0:
-            dorm_id = dorms[0].get_id()
-            if len(User_Associate_with_Dorm.objects.filter(id_dorm_id=dorm_id, id_user=user.id)) != 0 and \
-                    len(User_Associate_with_Organization.objects.filter(id_organization_id=organizationId, id_user_id=user.id)) != 0:
+        if Dorm.dorm_exist(dormName):
+            dorm_id = Dorm.get_dorm_id(dormName)
+            if User_Associate_with_Dorm.association_exist(dorm_id, user.id) and \
+                    User_Associate_with_Organization.association_exist(organizationId, user.id):
                 return True
             elif user.is_superuser:
                 return True
+            else:
+                messages.add_message(request, messages.INFO, "wrong association with dorm or organization")
+                return False
+        else:
+            messages.add_message(request, messages.INFO, "wrong Dorm name")
+            return False
+    messages.add_message(request, messages.INFO, "wrong login or password")
     return False
 
 
