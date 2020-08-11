@@ -12,7 +12,7 @@
                 {% for acronym,imgPath  in organizationsAcronymsAndPathToIMG %}
 
                     <div class="col-sm-4">
-                        <form action={% url 'set_organization' %} method="post">{% csrf_token %}
+                        <form action={% url 'set_organization' %} method=post>{% csrf_token %}
                             <button value='{{ acronym }}' name='organization' class="btn bg-transparent ">
                                 <img id='{{ acronym }}' class="img-fluid" src="{% static imgPath %}"   alt="{{ acronym }}">
                             </button>

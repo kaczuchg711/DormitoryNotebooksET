@@ -1,13 +1,47 @@
+from abc import ABC
+
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 # Create your models here.
 from organizations.models import Organization, Dorm
 
 
+def create_user_to_log_in(user: User):
+    # Todo test this
+    groups = user.groups.all()
+    if Group.objects.filter(name="supervisors")[0] in groups:
+        return Supervisor()
+    elif Group.objects.filter(name="students")[0] in groups:
+        return Student()
+
+
+class ICheckerRequirement(ABC):
+    def check_requirement(self, organizationID, dormName):
+        pass
+
+
 class Student(models.Model):
+    __metaclass__ = ICheckerRequirement
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     room = models.IntegerField()
+
+    def check_requirement(self, user, organizationID, dormName):
+        dormID = Dorm.objects.filter(name=dormName)[0].get_id()
+        if User_Associate_with_Organization.association_exist(organizationID, user.id) and \
+                User_Associate_with_Dorm.association_exist(dormID, user.id):
+            return True
+        return False
+
+
+class Supervisor:
+    __metaclass__ = ICheckerRequirement
+
+    def check_requirement(self, user, organizationID, dormName):
+        if User_Associate_with_Organization.association_exist(organizationID, user.id):
+            return True
+        return False
 
 
 class User_Associate_with_Organization(models.Model):
@@ -30,14 +64,10 @@ class User_Associate_with_Organization(models.Model):
         association.id_user = user
         association.id_organization = organization
 
-        if User_Associate_with_Organization.association_exist(organization.get_id(),user.id):
+        if User_Associate_with_Organization.association_exist(organization.get_id(), user.id):
             pass
         else:
             association.save()
-
-
-
-
 
 
 class User_Associate_with_Dorm(models.Model):

@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 from global_fun import change_QuerySet_from_db_to_list
 

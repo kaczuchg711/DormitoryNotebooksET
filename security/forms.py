@@ -3,7 +3,6 @@ from django import forms
 
 class LoginForm(forms.Form):
 
-
     def __init__(self, dormsTupleTuples):
         super().__init__()
 
