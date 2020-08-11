@@ -12,6 +12,7 @@ from security.models import User_Associate_with_Dorm, User_Associate_with_Organi
 
 def get_home_view(request):
     organization_id = request.session.get('organization_id')
+    User_Associate_with_Organization.associate("mieczyslawa","PK")
 
     if request.session.get('organization_id') is None:
         return organizationsView.get_organization_view(request)
@@ -32,20 +33,10 @@ def _prepare_context_data(organization_id):
             'form': form,
         }
         return context
-    else:
-        context = {
-            'organizationLogoPath': "img/" + organization.acronym + "_logo.png",
-            'organizations_dorms_names': organizations_dorms_names,
-            'form': form,
-        }
-        return context
 
 
 def log_in(request):
     user = _get_authenticate_user(request)
-
-    dormName = request.POST['dorms']
-    organizationId = request.session.get("organization_id")
 
     if _data_ok(request, user):
         login(request, user)

@@ -20,6 +20,25 @@ class User_Associate_with_Organization(models.Model):
             return True
         return False
 
+    @staticmethod
+    def associate(userLogin, organizationAcronym):
+        association = User_Associate_with_Organization()
+
+        user = User.objects.filter(username=userLogin)[0]
+        organization = Organization.objects.filter(acronym=organizationAcronym)[0]
+
+        association.id_user = user
+        association.id_organization = organization
+
+        if User_Associate_with_Organization.association_exist(organization.get_id(),user.id):
+            pass
+        else:
+            association.save()
+
+
+
+
+
 
 class User_Associate_with_Dorm(models.Model):
     id_user = models.ForeignKey(User, on_delete=models.CASCADE)
