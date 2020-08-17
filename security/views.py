@@ -47,8 +47,6 @@ def _prepare_context_data(organization_id):
 def log_in(request):
     user = _get_authenticate_user(request)
 
-
-
     if _data_ok(request, user):
         login(request, user)
 
@@ -57,45 +55,24 @@ def log_in(request):
         return redirect("/")
 
 
-def _data_ok(request, user:User):
+def _get_authenticate_user(request):
+    username = request.POST['login']
+    password = request.POST['password']
+    return authenticate(request, username=username, password=password, )
+
+
+def _data_ok(request, user: User):
     # Todo if is supervisor or porter can go to organization with out dorm checking
     #  learn permission in django
     dormName = request.POST['dorms']
     organizationId = request.session.get("organization_id")
-
-
-    print(type(create_user_to_log_in(user)))
-
-
-    # if user is not None:
-    #     if Dorm.dorm_exist(dormName):
-    #         dorm_id = Dorm.get_dorm_id(dormName)
-    #         if User_Associate_with_Dorm.association_exist(dorm_id, user.id) or user.id == 4 and \
-    #                 User_Associate_with_Organization.association_exist(organizationId, user.id):
-    #             return True
-    #         elif user.is_superuser:
-    #             return True
-    #         else:
-    #             messages.add_message(request, messages.INFO, "wrong association with dorm or organization")
-    #             return False
-    #     else:
-    #         messages.add_message(request, messages.INFO, "wrong Dorm name")
-    #         return False
-    # messages.add_message(request, messages.INFO, "wrong login or password")
-    # return False
 
     if user is not None:
         if user.is_superuser:
             return True
 
         LoginUser = create_user_to_log_in(user)
-        if LoginUser.check_requirement(user,organizationId,dormName):
+        if LoginUser.check_requirement(user, organizationId, dormName):
             return True
     messages.add_message(request, messages.INFO, "wrong data")
     return False
-
-
-def _get_authenticate_user(request):
-    username = request.POST['login']
-    password = request.POST['password']
-    return authenticate(request, username=username, password=password, )

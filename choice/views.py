@@ -6,4 +6,4 @@ from django.contrib.auth import views as auth_views
 
 @login_required(redirect_field_name='',login_url='/')
 def get_choice_view(request):
-    return render(request, "home/choice.html")
+    return render(request, "panel/choice.html")

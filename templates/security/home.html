@@ -10,14 +10,13 @@
         <section>
             <div class="container">
                 <div class="row">
-                    <div id="logo" class="col-sm-6">
-                        <form action={% url 'organization' %} method="post">{% csrf_token %}
-                            <button name='organization' class="btn bg-transparent ">
-                                <img class="img-fluid rounded mx-auto d-block" src="{% static  organizationLogoPath %}"
-                                     alt="logo">
-                            </button>
-                        </form>
-                    </div>
+                    <form id='change-organization-form' class="col-sm-6" action={% url 'organization' %} method="post"
+                    >{% csrf_token %}
+                        <button id='change-organization-button' name='organization' class="btn bg-transparent ">
+                            <img class="img-fluid rounded mx-auto d-block" src="{% static  organizationLogoPath %}"
+                                 alt="logo">
+                        </button>
+                    </form>
 
                     <div class="col-sm-6, login-form">
                         <form action={% url "login" %} method=POST>{% csrf_token %}
@@ -27,12 +26,12 @@
                             {{ form.login }} <br>
                             <label>hasło</label><br>
                             {{ form.password }} <br>
-                              {% if messages %}
-                                  {% for message in messages %}
-                                      <p{% if message.tags %} class="{{ message.tags }} "
-                                                              style="color: red" {% endif %}>{{ message }}</p>
-                                  {% endfor %}
-                              {% endif %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <p{% if message.tags %} class="{{ message.tags }} "
+                                                            style="color: red" {% endif %}>{{ message }}</p>
+                                {% endfor %}
+                            {% endif %}
 
                             <input type="submit" value="Submit">
                         </form>

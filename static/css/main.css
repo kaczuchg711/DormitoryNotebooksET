@@ -1,16 +1,16 @@
-/*body > **/
-/*{*/
-/*    border-style: solid;*/
-/*}*/
+body > *
+{
+    border-style: solid;
+}
 
-/*div > **/
-/*{*/
-/*    border-style: double;*/
-/*}*/
+div > *
+{
+    border-style: double;
+}
 
 body {
     font-size: 16px;
-    background: linear-gradient(180deg, rgba(8, 82, 166, 1) 0%, rgba(0, 87, 187, 1) 0%, rgba(255, 255, 255, 1)) fixed;
+    background: linear-gradient(180deg, rgba(255, 82, 166, 1) 0%, rgba(0, 87, 187, 1) 0%, rgba(255, 255, 255, 1)) fixed;
 }
 
 
