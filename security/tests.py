@@ -26,4 +26,3 @@ class Test(TestCase):
         organization.save()
         return user, organization
 
-
