@@ -9,11 +9,18 @@ from organizations.models import Organization, Dorm
 
 def create_user_to_log_in(user: User):
     # Todo test this
-    groups = user.groups.all()
-    if Group.objects.filter(name="supervisors")[0] in groups:
-        return Supervisor()
-    elif Group.objects.filter(name="students")[0] in groups:
-        return Student()
+    user_groups = user.groups.all()
+    groups = Group.objects.all()
+
+    try:
+        if all(x in groups.filter(name="supervisors") for x in user_groups):
+            return Supervisor()
+        elif all(x in groups.filter(name="students") for x in user_groups):
+            return Student()
+        else:
+            raise Exception
+    except ValueError:
+        print("Wrong user group")
 
 
 class ICheckerRequirement(ABC):
@@ -28,10 +35,11 @@ class Student(models.Model):
     room = models.IntegerField()
 
     def check_requirement(self, user, organizationID, dormName):
-        dormID = Dorm.objects.filter(name=dormName)[0].get_id()
-        if User_Associate_with_Organization.association_exist(organizationID, user.id) and \
-                User_Associate_with_Dorm.association_exist(dormID, user.id):
-            return True
+        if Dorm.dorm_exist(dormName):
+            dormID = Dorm.objects.filter(name=dormName)[0].get_id()
+            if User_Associate_with_Organization.association_exist(organizationID, user.id) and \
+                    User_Associate_with_Dorm.association_exist(dormID, user.id):
+                return True
         return False
 
 
@@ -81,7 +89,7 @@ class User_Associate_with_Dorm(models.Model):
         return False
 
     @staticmethod
-    def associate(userLogin,dormName):
+    def associate(userLogin, dormName):
         association = User_Associate_with_Dorm()
 
         user = User.objects.filter(username=userLogin)[0]
@@ -94,5 +102,3 @@ class User_Associate_with_Dorm(models.Model):
             pass
         else:
             association.save()
-
-
