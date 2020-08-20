@@ -63,7 +63,6 @@ def _get_authenticate_user(request):
 
 def _data_ok(request, user: User):
     # Todo if is supervisor or porter can go to organization with out dorm checking
-    #  learn permission in django
     dormName = request.POST['dorms']
     organizationId = request.session.get("organization_id")
 

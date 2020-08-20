@@ -4,23 +4,24 @@ from django.db import models
 from django.contrib.auth.models import User, Group
 
 # Create your models here.
+from django_mysql.models import QuerySet
+
 from organizations.models import Organization, Dorm
 
 
 def create_user_to_log_in(user: User):
-    # Todo test this
     user_groups = user.groups.all()
     groups = Group.objects.all()
+    user_groups:QuerySet
 
-    try:
-        if all(x in groups.filter(name="supervisors") for x in user_groups):
-            return Supervisor()
-        elif all(x in groups.filter(name="students") for x in user_groups):
-            return Student()
-        else:
-            raise Exception
-    except ValueError:
-        print("Wrong user group")
+    if len(user_groups) == 0:
+        raise ValueError
+    elif all(x in groups.filter(name="supervisors") for x in user_groups):
+        return Supervisor()
+    elif all(x in groups.filter(name="students") for x in user_groups):
+        return Student()
+    else:
+        raise ValueError
 
 
 class ICheckerRequirement(ABC):
