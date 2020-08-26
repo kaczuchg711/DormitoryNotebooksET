@@ -62,8 +62,8 @@ def _get_authenticate_user(request):
 
 
 def _data_ok(request, user: User):
-    # Todo if is supervisor or porter can go to organization with out dorm checking
     dormName = request.POST['dorms']
+    request.session['dorm_id'] = Dorm.objects.filter(name=dormName)[0].id
     organizationId = request.session.get("organization_id")
 
     if user is not None:
