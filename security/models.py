@@ -7,6 +7,7 @@ from django.contrib.auth.models import User, Group
 from django_mysql.models import QuerySet
 
 from organizations.models import Organization, Dorm
+from users.models import CustomUser
 
 
 def create_user_to_log_in(user: User):
@@ -29,11 +30,8 @@ class ICheckerRequirement(ABC):
         pass
 
 
-class Student(models.Model):
+class Student:
     __metaclass__ = ICheckerRequirement
-
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    room = models.IntegerField()
 
     def check_requirement(self, user, organizationID, dormName):
         if Dorm.dorm_exist(dormName):
@@ -54,7 +52,7 @@ class Supervisor:
 
 
 class User_Associate_with_Organization(models.Model):
-    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     id_organization = models.ForeignKey(Organization, on_delete=models.SET(0))
 
     @staticmethod
@@ -64,10 +62,10 @@ class User_Associate_with_Organization(models.Model):
         return False
 
     @staticmethod
-    def associate(userLogin, organizationAcronym):
+    def associate(useremail, organizationAcronym):
         association = User_Associate_with_Organization()
 
-        user = User.objects.filter(username=userLogin)[0]
+        user = CustomUser.objects.filter(email=useremail)[0]
         organization = Organization.objects.filter(acronym=organizationAcronym)[0]
 
         association.id_user = user
@@ -80,7 +78,7 @@ class User_Associate_with_Organization(models.Model):
 
 
 class User_Associate_with_Dorm(models.Model):
-    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     id_dorm = models.ForeignKey(Dorm, on_delete=models.SET(0))
 
     @staticmethod
@@ -90,10 +88,10 @@ class User_Associate_with_Dorm(models.Model):
         return False
 
     @staticmethod
-    def associate(userLogin, dormName):
+    def associate(userEmail, dormName):
         association = User_Associate_with_Dorm()
 
-        user = User.objects.filter(username=userLogin)[0]
+        user = CustomUser.objects.filter(email=userEmail)[0]
         association.id_user = user
 
         dorm = Dorm.objects.filter(name=dormName)[0]

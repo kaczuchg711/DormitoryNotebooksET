@@ -3,10 +3,11 @@ from django.db import models
 
 # Create your models here.
 from organizations.models import Dorm
+from users.models import CustomUser
 
 
 class RentItem(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     dorm = models.ForeignKey(Dorm, on_delete=models.CASCADE)
     itemName = models.CharField(max_length=255)
     rentalDate = models.DateField(default=None)

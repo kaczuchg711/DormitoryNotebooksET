@@ -22,8 +22,8 @@
                         <form action={% url "login" %} method=POST>{% csrf_token %}
                             <label>Akademik</label><br>
                             {{ form.dorms }} <br>
-                            <label>login</label><br>
-                            {{ form.login }} <br>
+                            <label>email</label><br>
+                            {{ form.email }} <br>
                             <label>hasło</label><br>
                             {{ form.password }} <br>
                             {% if messages %}

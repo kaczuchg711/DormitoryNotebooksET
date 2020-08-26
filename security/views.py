@@ -49,26 +49,26 @@ def log_in(request):
 
     if _data_ok(request, user):
         login(request, user)
-
         return redirect("/choice")
     else:
         return redirect("/")
 
 
 def _get_authenticate_user(request):
-    username = request.POST['login']
+    email = request.POST['email']
     password = request.POST['password']
-    return authenticate(request, username=username, password=password, )
+    return authenticate(request, email=email, password=password)
 
 
 def _data_ok(request, user: User):
-    dormName = request.POST['dorms']
-    request.session['dorm_id'] = Dorm.objects.filter(name=dormName)[0].id
-    organizationId = request.session.get("organization_id")
 
     if user is not None:
         if user.is_superuser:
             return True
+
+        dormName = request.POST['dorms']
+        request.session['dorm_id'] = Dorm.objects.filter(name=dormName)[0].id
+        organizationId = request.session.get("organization_id")
 
         LoginUser = create_user_to_log_in(user)
         if LoginUser.check_requirement(user, organizationId, dormName):

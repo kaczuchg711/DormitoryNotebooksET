@@ -28,7 +28,7 @@ SECRET_KEY = _key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1','185.157.164.100','testserver']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', '185.157.164.100', 'testserver']
 
 # Application definition
 
@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'security',
     'rental',
     'organizations',
+    'users',
 ]
+AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -9,6 +9,6 @@ class LoginForm(forms.Form):
         choices = ((x, x.__str__()) for x in dormsTupleTuples)
 
         self.fields["dorms"] = forms.ChoiceField(choices=choices)
-        self.fields["login"] = forms.CharField()
+        self.fields["email"] = forms.CharField()
         self.fields["password"] = forms.CharField(widget=forms.PasswordInput)
 
