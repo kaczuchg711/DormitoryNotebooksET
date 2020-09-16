@@ -1,6 +1,8 @@
 from django.contrib.auth.models import Group
 
-from security.models import create_user_to_log_in, Supervisor, Student
+from security.models.fun import create_user_to_log_in
+from security.models.NonDBmodels.Supervisor import Supervisor
+from security.models.NonDBmodels.Student import Student
 from security.tests.TestCaseWithDefaultDB import TestCaseWithDefaultDB
 from users.models import CustomUser
 

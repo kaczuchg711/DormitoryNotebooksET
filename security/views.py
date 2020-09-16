@@ -1,14 +1,13 @@
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.contrib import messages
 
 from organizations.models import Organization, Dorm
 from organizations import views as organizationsView
-from django import forms
 
 from security.forms import LoginForm
-from security.models import User_Associate_with_Dorm, User_Associate_with_Organization, create_user_to_log_in
+from security.models.fun import create_user_to_log_in
 
 
 def get_home_view(request):

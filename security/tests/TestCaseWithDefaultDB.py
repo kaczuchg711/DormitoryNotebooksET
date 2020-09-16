@@ -3,7 +3,8 @@ from django.test import TestCase
 from django.urls import reverse
 
 from organizations.models import Organization, Dorm, Associate_with_Dorms
-from security.models import User_Associate_with_Organization, User_Associate_with_Dorm
+from security.models.DBmodels.User_Associate_with_Dorm import User_Associate_with_Dorm
+from security.models.DBmodels.User_Associate_with_Organization import User_Associate_with_Organization
 from users.models import CustomUser
 
 

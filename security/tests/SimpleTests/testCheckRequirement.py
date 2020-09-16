@@ -1,4 +1,4 @@
-from security.models import create_user_to_log_in
+from security.models.fun import create_user_to_log_in
 from security.tests.TestCaseWithDefaultDB import TestCaseWithDefaultDB
 from users.models import CustomUser
 

@@ -1,11 +1,6 @@
-from MySQLdb import Date
-from django.contrib.auth.models import User
 from django.shortcuts import render
 
 # Create your views here.
-from organizations.models import Dorm
-from rental.models import RentItem
-from security.models import User_Associate_with_Organization, Student
 
 
 def create_base_view(request):

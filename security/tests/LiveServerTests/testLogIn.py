@@ -1,14 +1,12 @@
 # selinum
-from time import sleep
 
 from django.contrib.auth.models import Group
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from django.db import transaction, IntegrityError
 from selenium import webdriver
-from django.test import TestCase, SimpleTestCase, LiveServerTestCase, TransactionTestCase
 
 from organizations.models import Organization, Dorm, Associate_with_Dorms
-from security.models import User_Associate_with_Organization, User_Associate_with_Dorm
+from security.models.DBmodels.User_Associate_with_Dorm import User_Associate_with_Dorm
+from security.models.DBmodels.User_Associate_with_Organization import User_Associate_with_Organization
 from users.models import CustomUser
 
 
@@ -16,19 +14,20 @@ class TestLogIn(StaticLiveServerTestCase):
     def setUp(self):
         self.driver = webdriver.Firefox(executable_path=r'drivers/geckodriver')
 
-        self.users = {}
-        self.users["test_student"] = CustomUser.objects.create_user("test_student", "123")
-        self.users["test_supervisor"] = CustomUser.objects.create_user("test_supervisor", "123")
+        self.users = {
+            "test_student": CustomUser.objects.create_user("test_student", "123"),
+            "test_supervisor": CustomUser.objects.create_user("test_supervisor", "123")
+        }
         self.users["test_student"].save()
         self.users["test_supervisor"].save()
 
-        self.organizations = {}
-        self.organizations["PK"] = Organization.objects.create(name="Politechnika Krakowska", acronym="PK")
+        self.organizations = {"PK": Organization.objects.create(name="Politechnika Krakowska", acronym="PK")}
         self.organizations["PK"].save()
 
-        self.dorms = {}
-        self.dorms["DS1 Rumcajs"] = Dorm.objects.create(name="DS1 Rumcajs")
-        self.dorms["DS2 Leon"] = Dorm.objects.create(name="DS2 Leon")
+        self.dorms = {
+            "DS1 Rumcajs": Dorm.objects.create(name="DS1 Rumcajs"),
+            "DS2 Leon": Dorm.objects.create(name="DS2 Leon")
+        }
         self.dorms["DS1 Rumcajs"].save()
         self.dorms["DS2 Leon"].save()
 
@@ -46,7 +45,6 @@ class TestLogIn(StaticLiveServerTestCase):
         group = Group.objects.create(name='supervisors')
         group.save()
         group.user_set.add(self.users["test_supervisor"])
-
 
     def test_log_in(self):
         # build

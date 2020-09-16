@@ -686,3 +686,45 @@ JavaScript error: resource://gre/modules/TelemetryUtils.jsm, line 159: TypeError
 1600254234455	Marionette	INFO	Listening on port 33209
 1600254234544	Marionette	WARN	TLS certificate errors will be ignored for this session
 1600254235775	Marionette	INFO	Stopped listening on port 33209
+1600261858095	geckodriver	INFO	Listening on 127.0.0.1:54453
+1600261859098	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileUySHFx"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+JavaScript error: resource://gre/modules/TelemetryUtils.jsm, line 159: TypeError: date is undefined
+1600261862307	Marionette	INFO	Listening on port 35501
+1600261862411	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600261872766	Marionette	INFO	Stopped listening on port 35501
+1600261895415	geckodriver	INFO	Listening on 127.0.0.1:40553
+1600261895418	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilehKhvbV"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+JavaScript error: resource://gre/modules/TelemetryUtils.jsm, line 159: TypeError: date is undefined
+1600261897729	Marionette	INFO	Listening on port 46575
+1600261897826	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600261902088	Marionette	INFO	Stopped listening on port 46575
+1600263358288	geckodriver	INFO	Listening on 127.0.0.1:50243
+1600263358291	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile0pUCYA"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+JavaScript error: resource://gre/modules/TelemetryUtils.jsm, line 159: TypeError: date is undefined
+1600263360466	Marionette	INFO	Listening on port 33113
+1600263360497	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600263376792	Marionette	INFO	Stopped listening on port 33113
+1600263578070	geckodriver	INFO	Listening on 127.0.0.1:40195
+1600263578074	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileX1NcRT"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+JavaScript error: resource://gre/modules/TelemetryUtils.jsm, line 159: TypeError: date is undefined
+1600263580260	Marionette	INFO	Listening on port 37239
+1600263580281	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600263581547	Marionette	INFO	Stopped listening on port 37239
+1600268814318	geckodriver	INFO	Listening on 127.0.0.1:43423
+1600268814322	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileyz0Jt5"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+JavaScript error: resource://gre/modules/TelemetryUtils.jsm, line 159: TypeError: date is undefined
+1600268816635	Marionette	INFO	Listening on port 37935
+1600268816733	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600268818026	Marionette	INFO	Stopped listening on port 37935
+1600268891910	geckodriver	INFO	Listening on 127.0.0.1:46947
+1600268891914	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilegXUxhP"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+JavaScript error: resource://gre/modules/TelemetryUtils.jsm, line 159: TypeError: date is undefined
+1600268894171	Marionette	INFO	Listening on port 33571
+1600268894222	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600268895531	Marionette	INFO	Stopped listening on port 33571
