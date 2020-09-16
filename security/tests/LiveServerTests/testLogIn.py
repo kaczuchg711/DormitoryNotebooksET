@@ -3,21 +3,18 @@ from time import sleep
 
 from django.contrib.auth.models import Group
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.db import transaction, IntegrityError
 from selenium import webdriver
-from django.test import TestCase, SimpleTestCase, LiveServerTestCase
+from django.test import TestCase, SimpleTestCase, LiveServerTestCase, TransactionTestCase
 
 from organizations.models import Organization, Dorm, Associate_with_Dorms
 from security.models import User_Associate_with_Organization, User_Associate_with_Dorm
-from security.tests.model_tests import SetterTestDataBase
 from users.models import CustomUser
 
 
-class TestFoo(StaticLiveServerTestCase):
-
+class TestLogIn(StaticLiveServerTestCase):
     def setUp(self):
-        StaticLiveServerTestCase.setUp(self)
-
-        self.driver = webdriver.Firefox(executable_path=r'security/tests/geckodriver')
+        self.driver = webdriver.Firefox(executable_path=r'drivers/geckodriver')
 
         self.users = {}
         self.users["test_student"] = CustomUser.objects.create_user("test_student", "123")
@@ -50,9 +47,16 @@ class TestFoo(StaticLiveServerTestCase):
         group.save()
         group.user_set.add(self.users["test_supervisor"])
 
-    def test_foo(self):
-        # todo clean this
+
+    def test_log_in(self):
+        # build
         self.driver.get(self.live_server_url)
+        # operate
+        self._pass_logIn_sites()
+        # check
+        self.assertEqual(self.driver.title, "choice")
+
+    def _pass_logIn_sites(self):
         button = self.driver.find_element_by_id("PK")
         button.click()
         self.driver.find_element_by_xpath("//select[@name='dorms']/option[text()='DS2 Leon']").click()
@@ -61,7 +65,6 @@ class TestFoo(StaticLiveServerTestCase):
         passwordInput = self.driver.find_element_by_name("password")
         passwordInput.send_keys("123")
         self.driver.find_element_by_name("submit").click()
-        sleep(1)
-        self.assertEqual(self.driver.title,"choice")
+
     def tearDown(self):
         self.driver.close()

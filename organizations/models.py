@@ -32,12 +32,10 @@ class Organization(models.Model):
         organizationAcronym = request.POST.get('organization')
         if Organization.organization_in_db(organizationAcronym):
             organization = Organization.objects.filter(acronym=organizationAcronym)[0]
-            request.session['organization_id'] = organization.get_id()
+            request.session['organization_id'] = organization.id
             return redirect('/')
         else:
             return redirect('organization')
-
-
 
     def get_dorms_names(self):
         organizationsDormitoriesIdsQS = Associate_with_Dorms.objects.values('id_dorm').filter(id_organization=self.id)
@@ -51,10 +49,6 @@ class Organization(models.Model):
         organizationsDormitoriesNames = [i[0]['name'] for i in querySets]
 
         return organizationsDormitoriesNames
-
-    def get_id(self):
-        return self.id
-
 
 
 class Dorm(models.Model):
@@ -70,13 +64,30 @@ class Dorm(models.Model):
     @staticmethod
     def get_dorm_id(dormName):
         dorms = list(Dorm.objects.filter(name=dormName))
-        return dorms[0].get_id()
-
-
-    def get_id(self):
-        return self.id
+        return dorms[0].id
 
 
 class Associate_with_Dorms(models.Model):
     id_dorm = models.ForeignKey(Dorm, on_delete=models.SET(0))
     id_organization = models.ForeignKey(Organization, on_delete=models.SET(0))
+
+    @staticmethod
+    def associate(dormName, organizationAcronym):
+        association = Associate_with_Dorms()
+
+        dorm = Dorm.objects.filter(name=dormName)[0]
+        organization = Organization.objects.filter(acronym=organizationAcronym)[0]
+
+        association.id_dorm = dorm
+        association.id_organization = organization
+
+        if Associate_with_Dorms.association_exist(dorm.id, organization.id):
+            pass
+        else:
+            association.save()
+
+    @staticmethod
+    def association_exist(dorm_id, organization_id):
+        if len(Associate_with_Dorms.objects.filter(id_dorm_id=dorm_id, id_organization_id=organization_id)) != 0:
+            return True
+        return False

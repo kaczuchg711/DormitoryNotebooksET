@@ -10,8 +10,7 @@
         <section>
             <div class="container">
                 <div class="row">
-                    <form id='change-organization-form' class="col-sm-6" action={% url 'organization' %} method="post"
-                    >{% csrf_token %}
+                    <form id='change-organization-form' class="col-sm-6" action={% url 'organization' %} method="post">{% csrf_token %}
                         <button id='change-organization-button' name='organization' class="btn bg-transparent ">
                             <img class="img-fluid rounded mx-auto d-block" src="{% static  organizationLogoPath %}"
                                  alt="logo">
@@ -33,7 +32,7 @@
                                 {% endfor %}
                             {% endif %}
 
-                            <input type="submit" value="Submit">
+                            <input type="submit" value="Submit" name="submit">
                         </form>
 
                         <div class="registration_blue_bar">

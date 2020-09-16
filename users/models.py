@@ -8,7 +8,7 @@ from .managers import CustomUserManager
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
-    room_number = models.CharField(max_length=10,default=None)
+    room_number = models.CharField(max_length=10,default=None,null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

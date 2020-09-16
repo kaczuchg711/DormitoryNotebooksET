@@ -3,8 +3,6 @@ from abc import ABC
 from django.db import models
 from django.contrib.auth.models import User, Group
 
-# Create your models here.
-from django_mysql.models import QuerySet
 
 from organizations.models import Organization, Dorm
 from users.models import CustomUser
@@ -12,18 +10,19 @@ from users.models import CustomUser
 
 def create_user_to_log_in(user: User):
     user_groups = user.groups.all()
-    groups = Group.objects.all()
-    user_groups:QuerySet
 
     if len(user_groups) == 0:
         raise ValueError
-    elif all(x in groups.filter(name="supervisors") for x in user_groups):
+    elif _user_in_group(user_groups,"supervisors"):
         return Supervisor()
-    elif all(x in groups.filter(name="students") for x in user_groups):
+    elif _user_in_group(user_groups,"students"):
         return Student()
     else:
         raise ValueError
 
+def _user_in_group(user_groups,group_name):
+    groups = Group.objects.all()
+    return all(x in groups.filter(name=group_name) for x in user_groups)
 
 class ICheckerRequirement(ABC):
     def check_requirement(self, organizationID, dormName):
@@ -35,7 +34,7 @@ class Student:
 
     def check_requirement(self, user, organizationID, dormName):
         if Dorm.dorm_exist(dormName):
-            dormID = Dorm.objects.filter(name=dormName)[0].get_id()
+            dormID = Dorm.objects.filter(name=dormName)[0].id
             if User_Associate_with_Organization.association_exist(organizationID, user.id) and \
                     User_Associate_with_Dorm.association_exist(dormID, user.id):
                 return True
@@ -71,7 +70,7 @@ class User_Associate_with_Organization(models.Model):
         association.id_user = user
         association.id_organization = organization
 
-        if User_Associate_with_Organization.association_exist(organization.get_id(), user.id):
+        if User_Associate_with_Organization.association_exist(organization.id, user.id):
             pass
         else:
             association.save()
@@ -97,7 +96,7 @@ class User_Associate_with_Dorm(models.Model):
         dorm = Dorm.objects.filter(name=dormName)[0]
         association.id_dorm = dorm
 
-        if User_Associate_with_Dorm.association_exist(dorm.get_id(), user.id):
+        if User_Associate_with_Dorm.association_exist(dorm.id, user.id):
             pass
         else:
             association.save()
