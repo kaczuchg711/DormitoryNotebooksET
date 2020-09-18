@@ -68,8 +68,11 @@ def _data_ok(request, user: User):
         dormName = request.POST['dorms']
         request.session['dorm_id'] = Dorm.objects.filter(name=dormName)[0].id
         organizationId = request.session.get("organization_id")
-
-        LoginUser = create_user_to_log_in(user)
+        try:
+            LoginUser = create_user_to_log_in(user)
+        except ValueError:
+            messages.add_message(request, messages.INFO, "wrong data")
+            return False
         if LoginUser.check_requirement(user, organizationId, dormName):
             return True
     messages.add_message(request, messages.INFO, "wrong data")

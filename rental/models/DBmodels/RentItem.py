@@ -1,7 +1,5 @@
-from django.contrib.auth.models import User
 from django.db import models
 
-# Create your models here.
 from organizations.models import Dorm
 from users.models import CustomUser
 
@@ -13,4 +11,3 @@ class RentItem(models.Model):
     rentalDate = models.DateField(default=None)
     rentHour = models.TimeField(default=None)
     returnHour = models.TimeField(default=None)
-

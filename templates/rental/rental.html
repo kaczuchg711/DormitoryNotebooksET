@@ -23,24 +23,50 @@
                     <th scope="col">godzina oddania</th>
                 </tr>
                 </thead>
-                <tr>
-                    <td>01-01-2020</td>
-                    <td>Ewelina</td>
-                    <td>Michalska</td>
-                    <td>206</td>
-                    <td>12:23</td>
-                    <td>12:34</td>
-                </tr>
-                <tr>
-                    <td>01-01-2020</td>
-                    <td>Ewelina</td>
-                    <td>Michalska</td>
-                    <td>206</td>
-                    <td>12:23</td>
-                    <td>-</td>
-                </tr>
+                {% for i in aaaa %}
+                    <tr>
+                        <th scope="col">{{ i.0 }}</th>
+                        <th scope="col">{{ i.1 }}</th>
+                        <th scope="col">{{ i.2 }}</th>
+                        <th scope="col">{{ i.3 }}</th>
+                        <th scope="col">{{ i.4 }}</th>
+                        <th scope="col">{{ i.5 }}</th>
+                        <th scope="col">{{ i.6 }}</th>
+                    </tr>
+                {% endfor %}
             </table>
         </div>
+
+        {#        <div class="table_container">#}
+        {#            <table class="table table-striped text-center">#}
+        {#                <thead>#}
+        {#                <tr>#}
+        {#                    <th scope="col">data</th>#}
+        {#                    <th scope="col">imię</th>#}
+        {#                    <th scope="col">nazwisko</th>#}
+        {#                    <th scope="col">numer pokoju</th>#}
+        {#                    <th scope="col">godzina pobrania</th>#}
+        {#                    <th scope="col">godzina oddania</th>#}
+        {#                </tr>#}
+        {#                </thead>#}
+        {#                <tr>#}
+        {#                    <td>01-01-2020</td>#}
+        {#                    <td>Ewelina</td>#}
+        {#                    <td>Michalska</td>#}
+        {#                    <td>206</td>#}
+        {#                    <td>12:23</td>#}
+        {#                    <td>12:34</td>#}
+        {#                </tr>#}
+        {#                <tr>#}
+        {#                    <td>01-01-2020</td>#}
+        {#                    <td>Ewelina</td>#}
+        {#                    <td>Michalska</td>#}
+        {#                    <td>206</td>#}
+        {#                    <td>12:23</td>#}
+        {#                    <td>-</td>#}
+        {#                </tr>#}
+        {#            </table>#}
+        {#        </div>#}
 
     {% endblock data %}
 
