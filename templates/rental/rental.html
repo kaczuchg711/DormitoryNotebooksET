@@ -22,7 +22,7 @@
                     <th scope="col">godzina oddania</th>
                 </tr>
                 </thead>
-                {% for i in aaaa %}
+                {% for i in rentData %}
                     <tr>
                         <th scope="col">{{ i.0 }}</th>
                         <th scope="col">{{ i.1 }}</th>
@@ -44,9 +44,10 @@
                     <form action={% url 'rentItem' %} method="post">{% csrf_token %}
                         <select class="col-sm-6">
                             <option value="" selected disabled hidden>Choose here</option>
-                            <option>nananan</option>
-                            <option>lalalala</option>
-                            <option>kakak</option>
+{#                        Todo send it as value #}
+                            {% for i in availableItems %}
+                                <option>{{ i.0 }} {{ i.1 }}</option>
+                            {% endfor %}
                         </select>
                         <input type="submit" value="Submit" name="submit">
 

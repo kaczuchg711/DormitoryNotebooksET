@@ -8,3 +8,5 @@ desktop.ini
 venv
 *bak.*
 brudno.py
+*.log
+*.png
