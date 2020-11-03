@@ -1,0 +1,7 @@
+1602490648758	geckodriver	INFO	Listening on 127.0.0.1:60091
+1602490648765	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilecrBW54"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1602490650635	Marionette	INFO	Listening on port 41373
+1602490650678	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://browser/content/browser-customization.js, line 172: NS_ERROR_NOT_INITIALIZED: 
+1602490661742	Marionette	INFO	Stopped listening on port 41373

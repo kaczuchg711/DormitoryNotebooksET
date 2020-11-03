@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as authViews
 
+from rental.models.DBmodels.RentItem import RentItem
 from security import views as securityViews
 from organizations import views as organizationsViews
 from choice import views as choiceViews
@@ -35,4 +36,5 @@ urlpatterns = [
     path('set_organization/', Organization.set_organization, name='set_organization'),
     path('login/', securityViews.log_in, name="login"),
     path('logout/', authViews.LogoutView.as_view(template_name='security/home.html'), name='logout'),
+    path('rentItem/', RentItem.rent, name='rentItem')
 ]

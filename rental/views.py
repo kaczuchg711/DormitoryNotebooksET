@@ -1,13 +1,19 @@
+from MySQLdb.converters import NoneType
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
 from rental.models.DBmodels.RentItem import RentItem
 from users.models import CustomUser
+from global_fun import print_with_enters
 
 
+
+
+@login_required(redirect_field_name='',login_url='/')
 def create_base_view(request):
+    itemName = request.POST['button']
     dormId = request.session.get('dorm_id')
-    itemName = "vacuum cleaner"
     rentItemLogs = RentItem.objects.filter(dorm_id=dormId, itemName=itemName)
 
     dates = [row.rentalDate.isoformat() for row in rentItemLogs]
@@ -15,12 +21,18 @@ def create_base_view(request):
     userNames = [x.first_name for x in users]
     userLastNames = [x.last_name for x in users]
     roomUserNumbers = [x.room_number for x in users]
-    rentHour = [row.rentHour for row in rentItemLogs]
-    returnHour = [row.returnHour for row in rentItemLogs]
+    rentHour = [row.rentHour.isoformat() for row in rentItemLogs if row.rentHour is not None]
 
-    aaaa = zip(dates,userNames,userLastNames,roomUserNumbers,rentHour,returnHour)
+    returnHour = []
+    for row in rentItemLogs:
+        if type(row.returnHour) is not NoneType:
+            returnHour.append(row.returnHour.isoformat())
+        else:
+            returnHour.append("")
+
+    rentData = zip(dates, userNames, userLastNames, roomUserNumbers, rentHour, returnHour)
 
     context = {
-        'aaaa': aaaa
+        'aaaa': rentData
     }
-    return render(request, "rental/rental.html",context)
+    return render(request, "rental/rental.html", context)

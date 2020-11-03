@@ -1,0 +1,9 @@
+1602512938461	geckodriver	INFO	Listening on 127.0.0.1:43573
+1602512938468	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileevEBGs"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1602512940438	Marionette	INFO	Listening on port 38111
+1602512940481	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x1D0011,name=PBackgroundStorage::Msg_Observe) Channel error: cannot send/recv
+
+1602514779399	Marionette	INFO	Stopped listening on port 38111
