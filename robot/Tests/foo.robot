@@ -13,6 +13,3 @@ foo aaaaaaaaaa
 #    Click Button  xpath=/html/body/section/div/div/form/input[2]
 #    Sleep  1s
 #    Close Browser
-
-
-
