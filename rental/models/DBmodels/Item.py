@@ -7,3 +7,4 @@ class Item(models.Model):
     number = models.IntegerField(default=0)
     dorm = models.ForeignKey(Dorm, on_delete=models.CASCADE)
     isAvailable = models.BooleanField(default=True)
+

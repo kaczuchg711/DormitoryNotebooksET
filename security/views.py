@@ -27,7 +27,6 @@ def _prepare_context_data(organization_id):
     form = LoginForm(organizations_dorms_names)
     if form.is_valid():
         form.save()
-
         context = {
             'organizationLogoPath': "img/" + organization.acronym + "_logo.png",
             'organizations_dorms_names': organizations_dorms_names,

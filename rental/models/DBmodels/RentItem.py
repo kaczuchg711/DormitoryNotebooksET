@@ -19,7 +19,7 @@ class RentItem(models.Model):
     returnHour = models.TimeField(default=None, null=True)
 
     @staticmethod
-    def rent(request:WSGIRequest):
+    def rent(request: WSGIRequest):
         #   Todo
         #   itemName, data, name , surname , dormId, userID
         user = request.user
@@ -30,23 +30,8 @@ class RentItem(models.Model):
         rentalDate = Date.today()
         t = time.localtime()
         rentHour = time.strftime("%H:%M:%S", t)
-        # .strftime("%H:%M:%S")
-        # print("siema")
-        # print("siema")
-        # print("siema")
-        # print("siema")
-        # print(rentHour)
-        # print("siema")
-        # print("siema")
-        # print("siema")
-        # print("siema")
 
-
-        rentItem = RentItem(user=user,dorm=dorm,itemName=itemName,rentalDate=rentalDate,rentHour=rentHour)
+        rentItem = RentItem(user=user, dorm=dorm, itemName=itemName, rentalDate=rentalDate, rentHour=rentHour)
         rentItem.save()
 
-
         return redirect('rent')
-
-
-    #   data, imie, nazwisko , nr pokoju , godzine pobrania, godzine oddania
