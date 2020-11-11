@@ -2,7 +2,7 @@
 Library  SeleniumLibrary
 Library  Dialogs
 Resource  ../Resources/res1.robot
-Test Setup  log in  mieczyslawa
+Test Setup  log in  tomekkacza
 
 *** Test Cases ***
 foo aaaaaaaaaa
@@ -10,9 +10,9 @@ foo aaaaaaaaaa
     Click element  xpath=/html/body/section/div/div/form/select
     wait until element is visible   xpath=/html/body/section/div/div/form/select/option[3]
     click element   xpath=/html/body/section/div/div/form/select/option[3]
-    Click Button  xpath=/html/body/section/div/div/form/input[2]
-    Sleep  1s
-    Close Browser
+#    Click Button  xpath=/html/body/section/div/div/form/input[2]
+#    Sleep  1s
+#    Close Browser
 
 
 
