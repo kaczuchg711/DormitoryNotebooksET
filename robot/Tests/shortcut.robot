@@ -12,7 +12,7 @@ Shortcut
 *** Keywords ***
 Log in
     [Tags]    DEBUG
-    Open Browser  http://0.0.0.0:8000  chrome
+    Open Browser  http://0.0.0.0:8000  firefox
     Click Button  xpath=/html/body/div/section/div/div[1]/form/button
     Click element  xpath=//*[@id="id_dorms"]
     wait until element is visible   xpath=/html/body/div/section/div/div/div/form/select/option[5]
