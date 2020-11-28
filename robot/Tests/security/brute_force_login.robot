@@ -19,7 +19,6 @@ Brute force
         Input Text  xpath=//*[@id="id_email"]  ${user_name}
         Input Password  xpath=//*[@id="id_password"]  ${Wrong Password}
         Click Button  xpath=/html/body/div/section/div/div/div/form/input[4]
-#        Sleep  1s
     END
 
-    Element Text Should Be  xpath=/html/body/div/section/div/div/div[2]/form/p  Wait 5s
+    Element Text Should Be  xpath=/html/body/div/section/div/div/div[2]/form/p  too many attempt wait a moment

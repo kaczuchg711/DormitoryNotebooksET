@@ -6,5 +6,7 @@ def change_QuerySet_from_db_to_list(querySet, column_name):
 #         for item in entry_list:
 #             print(item.atribute)
 
-def print_with_enters(string):
-    print("\n"*5+string+"\n"*5)
+def print_with_enters(*valuses):
+    print("\n"*3)
+    print(*valuses)
+    print("\n"*3)
