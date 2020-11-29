@@ -1,4 +1,5 @@
 from django.db import models
+from ipware import get_client_ip
 
 from organizations.models import Dorm
 from users.models import CustomUser
@@ -10,3 +11,8 @@ class BlockedUsers(models.Model):
     ip = models.TextField(default="")
     blocked = models.BooleanField(default=False)
     blocking_time = models.TimeField(default="00:00:00")
+
+    @staticmethod
+    def client_ip_is_in_blockedUsers():
+        pass
+

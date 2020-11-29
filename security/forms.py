@@ -1,8 +1,5 @@
 from django import forms
 
-from global_fun import print_with_enters
-
-
 class LoginForm(forms.Form):
     def __init__(self, dormsTupleTuples):
         super().__init__()
