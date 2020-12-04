@@ -21,7 +21,8 @@ Brute force
     Should fail log in
     Close Browser
     After 5s do login correct
-    Close Browser
+
+
 #    todo ip should not be in blocked user
 *** Keywords ***
 Normal Login
@@ -51,7 +52,6 @@ Try 4 times give wrong password
     END
 
 Should fail log in
-
     Give right values to login and send
     Location Should Be   ${login adress page}
 
