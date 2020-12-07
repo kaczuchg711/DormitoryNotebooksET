@@ -46,6 +46,11 @@ class BlockedUsers(models.Model):
         self.delete()
 
     @staticmethod
+    def delete_user_from_blocked_list_by_ip(client_ip):
+        blockedUser = BlockedUsers.objects.filter(ip=client_ip)
+        blockedUser.delete()
+
+    @staticmethod
     def create_blocked_user(request):
         actual_time = get_actual_time()
         client_ip, is_routable = get_client_ip(request)
