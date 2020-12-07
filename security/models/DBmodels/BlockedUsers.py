@@ -14,7 +14,7 @@ class BlockedUsers(models.Model):
     ip = models.TextField(default="")
     blocked = models.BooleanField(default=False)
     blocking_time = models.TimeField(default="00:00:00")
-    maxAttemptsNumber = 3
+    maxAttemptsNumber = 5
 
     def block_time_passed(self):
         t = basic_time.localtime()

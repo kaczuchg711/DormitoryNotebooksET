@@ -35,11 +35,12 @@ Admin Login
     Admin should login any organization   2  Piast            tkacza  pomidorowa
 
 Brute force
-    Normal loging
+    Log out
+    Normal loging  1  DS B-1 Bydgoska  tomekkacza   pomidorowa
+    Log out
     Select organization  1
-    Try a few times give wrong password  4
+    Try a few times give wrong password  6
     Element Text Should Be  xpath=/html/body/div/section/div/div/div[2]/form/p    too many attempts wait a moment
-    Should fail log in
     Close Browser
     After a few seconds do login correct  5
 
@@ -87,7 +88,3 @@ Try a few times give wrong password
         Input Password  xpath=//*[@id="id_password"]  ${Wrong Password}
         Click Button  xpath=/html/body/div/section/div/div/div/form/input[4]
     END
-
-Should fail log in
-    Give right values to login and send
-    Location Should Be   ${login adress page}
