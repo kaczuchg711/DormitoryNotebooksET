@@ -8,5 +8,6 @@ class RentForm(forms.Form):
         choices = list()
         for item in availableItems:
             choices.append((item.number.__str__(), item.number.__str__() + ". " + item.name))
-
+        print(choices)
         self.fields["items"] = forms.ChoiceField(choices=choices)
+
