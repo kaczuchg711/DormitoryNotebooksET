@@ -74,7 +74,7 @@ class Associate_with_Dorms(models.Model):
     @staticmethod
     def associate(dormName, organizationAcronym):
         association = Associate_with_Dorms()
-
+        x = 1
         dorm = Dorm.objects.filter(name=dormName)[0]
         organization = Organization.objects.filter(acronym=organizationAcronym)[0]
 
@@ -82,7 +82,7 @@ class Associate_with_Dorms(models.Model):
         association.id_organization = organization
 
         if Associate_with_Dorms.association_exist(dorm.id, organization.id):
-            pass
+            Warning("association_exist")
         else:
             association.save()
 
