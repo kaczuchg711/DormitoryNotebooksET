@@ -5,6 +5,7 @@ from django.contrib.auth.models import Group
 from django.shortcuts import redirect
 
 from organizations.models import Organization, Dorm, Associate_with_Dorms
+from rental.models.DBmodels.Item import Item
 from security.models.DBmodels.User_Associate_with_Dorm import User_Associate_with_Dorm
 from security.models.DBmodels.User_Associate_with_Organization import User_Associate_with_Organization
 from users.models import CustomUser
@@ -28,7 +29,7 @@ class BasicDB:
 
         self.dorms = {
             "PK": ("DS B1 Bydgoska", "DS1 Rumcajs", "DS2 Leon", "DS3 Bartek", "DS4 Balon"),
-            "UJ": ("Akademik UJ1", "Akademik UJ2"),
+            "UJ": ("Akademik UJ1", "Akademik UJ2","Piast"),
             "AGH": ("Olimp", "Akropol", "Hajduczek"),
         }
 
@@ -50,17 +51,12 @@ class BasicDB:
 
     def create_users(self):
         try:
+            CustomUser.objects.create_superuser("tkacza", "pomidorowa")
             self.users["student1"] = CustomUser.objects.create_user("student1", "pomidorowa")
             self.users["porter1"] = CustomUser.objects.create_user("porter1", "pomidorowa")
             self.users["supervisor1"] = CustomUser.objects.create_user("supervisor1", "pomidorowa")
         except:
             Warning("Users exist")
-        # createdUsers = CustomUser.objects.all()
-        # x = self.users.values()
-        # for user in x:
-        #     if user not in createdUsers:
-        #         pass
-        #         user.save()
 
     def associate_users_with_organization(self):
         User_Associate_with_Organization.associate("student1", "PK")
@@ -85,6 +81,12 @@ class BasicDB:
         self.groups["porters"].user_set.add(self.users["porter1"])
         self.groups["supervisors"].user_set.add(self.users["supervisor1"])
 
+    def create_items(self):
+        dorm_id = Dorm.objects.filter(name="DS B1 Bydgoska")[0].id
+        for i in range(3):
+            if not len(Item.objects.all()) == 3:
+                Item.objects.create(name="vacuum cleaner", isAvailable=True, dorm_id=dorm_id, number=i)
+
 
 def create_basic_db(request):
     db = BasicDB()
@@ -95,8 +97,7 @@ def create_basic_db(request):
     db.associate_users_with_organization()
     db.associate_users_with_dorms()
     db.create_groups()
-
     db.add_user_to_group()
-
+    db.create_items()
     # todo items
     return redirect("organization")

@@ -5,7 +5,7 @@ Library  SeleniumLibrary
 *** Variables ***
 ${login adress page}  http://127.0.0.1:8000/
 ${successful adress page after login}  http://127.0.0.1:8000/choice/
-${dorm_name}  DS B-1 Bydgoska
+${dorm_name}  DS B1 Bydgoska
 *** Keywords ***
 Startt
     Open Browser  ${login adress page}  firefox
