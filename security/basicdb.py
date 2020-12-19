@@ -95,6 +95,7 @@ def create_basic_db(request):
     db.associate_users_with_organization()
     db.associate_users_with_dorms()
     db.create_groups()
+
     db.add_user_to_group()
 
     # todo items
