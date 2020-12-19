@@ -25,7 +25,7 @@ class User_Associate_with_Organization(models.Model):
         association.id_organization = organization
 
         if User_Associate_with_Organization.association_exist(organization.id, user.id):
-            pass
+            Warning("association_exist")
         else:
             association.save()
 

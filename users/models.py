@@ -8,7 +8,7 @@ from .managers import CustomUserManager
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
-    room_number = models.CharField(max_length=10,default=None,null=True)
+    room_number = models.CharField(max_length=10, default=None, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -32,5 +32,3 @@ class CustomUser(AbstractUser):
         if all(x in a for x in b):
             return True
         return False
-
-
