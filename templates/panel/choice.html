@@ -24,7 +24,7 @@
                 {% for item in itemsInDorm %}
                     <div class="col-sm-3">
                         <form method="post" action={% url 'rent' %}>{% csrf_token %}
-                            <button class="home-button" name="button" value= {{ item }}>Wypożycz {{ item }}</button>
+                            <button class="home-button" name="button" value= "{{ item }}">Wypożycz {{ item }}</button>
                         </form>
                     </div>
                 {% endfor %}

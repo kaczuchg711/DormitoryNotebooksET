@@ -17,7 +17,6 @@ def get_choice_view(request):
     itemsInDorm = make_unique_list(itemsInDorm)
     itemsInDorm = _unpack_from_tuples(itemsInDorm)
 
-    print_with_enters(itemsInDorm)
     context = {
         "itemsInDorm": itemsInDorm
     }

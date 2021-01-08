@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.utils.datastructures import MultiValueDictKeyError
 
+from global_fun import print_with_enters
 from rental.models.DBmodels.RentItem import RentItem
 from rental.models.DBmodels.Item import Item
 from rental.forms import RentForm
@@ -16,6 +17,7 @@ def create_base_view(request):
     # user choose item for rent
     try:
         itemName = request.POST['button']
+        request.session['name_item_to_rent'] = itemName
     except MultiValueDictKeyError:
         try:
             # user reload page
@@ -23,7 +25,6 @@ def create_base_view(request):
         except KeyError:
             # user want enter rent page from url
             return redirect("choice")
-
 
     dormId = request.session.get('dorm_id')
 
@@ -51,17 +52,18 @@ def create_base_view(request):
 
     rentData = zip(dates, userNames, userLastNames, roomUserNumbers, rentHour, returnHour)
 
-    availableItems = Item.objects.filter(dorm_id=dormId, isAvailable=True)
+    availableItems = Item.objects.filter(dorm_id=dormId, isAvailable=True, name=itemName)
 
-    # todo check user alrady rent something
+    # todo check user already rent something
 
     form = RentForm(availableItems)
+
+    print_with_enters(form)
 
     context = {
         'rentData': rentData,
         'availableItemsForm': form,
         'buttonString': "wypożycz"
     }
-
 
     return render(request, "rental/rental.html", context)

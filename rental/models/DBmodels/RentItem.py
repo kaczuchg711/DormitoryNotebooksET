@@ -22,35 +22,41 @@ class RentItem(models.Model):
 
     @staticmethod
     def rent(request: WSGIRequest):
-        print("\n" * 3)
+
         print_Post(request)
-        print("\n" * 3)
-        print_session(request)
-        print("\n" * 3)
 
-        user = request.user
-        dormID = request.session.get("dorm_id")
-        dorm = Dorm.objects.filter(id=dormID)[0]
-        # Todo dynamic itemName
-        itemName = "vacuum cleaner"
-        rentalDate = Date.today()
-        t = time.localtime()
-        rentHour = time.strftime("%H:%M:%S", t)
+        user, dorm, itemName, rentalDate, rentHour = RentItem._collect_data_for_RentItem(request)
 
-        itemId = Item.objects.filter(dorm=dorm, name=itemName, number=request.POST["items"])[0].id
-        rentItem = RentItem(user=user, dorm=dorm, item_id=itemId, rentalDate=rentalDate, rentHour=rentHour)
+        itemToRent = Item.objects.filter(dorm=dorm, name=itemName, number=request.POST["items"])[0]
+
+        rentItem = RentItem(user=user, dorm=dorm, item_id=itemToRent.id, rentalDate=rentalDate, rentHour=rentHour)
+        RentItem(user=user, dorm=dorm, item_id=itemToRent.id, rentalDate=rentalDate, rentHour=rentHour)
         rentItem.save()
+        itemToRent.isAvailable = False
+        itemToRent.save()
 
         request.session["last_rent_item"] = itemName
 
         return redirect('rent')
 
     @staticmethod
+    def _collect_data_for_RentItem(request):
+        user = request.user
+        dormID = request.session.get("dorm_id")
+        dorm = Dorm.objects.filter(id=dormID)[0]
+        itemName = request.session['name_item_to_rent']
+
+        rentalDate = Date.today()
+        t = time.localtime()
+        rentHour = time.strftime("%H:%M:%S", t)
+
+        return user, dorm, itemName, rentalDate, rentHour
+
+    @staticmethod
     def user_already_renting(request: WSGIRequest):
 
-
         try:
-            number = request.POST["items"]
+            number = request.POST["item_number"]
         except MultiValueDictKeyError:
             return False
 
