@@ -12,7 +12,7 @@ from rental.forms import RentForm
 
 @login_required(redirect_field_name='', login_url='/')
 def create_base_view(request):
-    # todo check this itemName. The users are really bad
+    # todo check itemName. The users are really bad
     # user choose item for rent
     try:
         itemName = request.POST['button']

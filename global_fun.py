@@ -31,3 +31,7 @@ def print_session(request: WSGIRequest):
     print("session:")
     for key, value in request.session.items():
         print('{:>30} => {}'.format(key, value))
+
+def make_unique_list(collection):
+    collection = set(collection)
+    return list(collection)
