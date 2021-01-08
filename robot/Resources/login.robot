@@ -44,6 +44,7 @@ Log out
 
 Select Dorm
     [Arguments]  ${dorm name}
+
     Select From List By Label  xpath=/html/body/div/section/div/div/div/form/select  ${dorm name}
 
 #Todo routing test

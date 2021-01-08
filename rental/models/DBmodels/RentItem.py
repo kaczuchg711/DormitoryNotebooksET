@@ -4,6 +4,7 @@ from MySQLdb import Date, Time
 from django.core.handlers.wsgi import WSGIRequest
 from django.db import models
 from django.shortcuts import redirect
+from django.utils.datastructures import MultiValueDictKeyError
 
 from global_fun import print_with_enters, print_Post, print_session
 from organizations.models import Dorm
@@ -46,15 +47,18 @@ class RentItem(models.Model):
 
     @staticmethod
     def user_already_renting(request: WSGIRequest):
-        user = request.user
+
+
+        try:
+            number = request.POST["items"]
+        except MultiValueDictKeyError:
+            return False
+
         dormID = request.session.get("dorm_id")
         dorm = Dorm.objects.filter(id=dormID)[0]
         itemName = "vacuum cleaner"
 
-        itemId = Item.objects.filter(dorm=dorm, name=itemName, number=request.POST["items"])[0].id
-
-        return True
-        # if (RentItem.objects.filter(user=user, , rentHour=None)[0] is not None ):
-        #     return True
-        # else:
-        #     return False
+        if Item.objects.filter(dorm=dorm, name=itemName, number=number) is None:
+            return False
+        else:
+            return True
