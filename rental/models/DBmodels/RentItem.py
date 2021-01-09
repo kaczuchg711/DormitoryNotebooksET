@@ -6,7 +6,7 @@ from django.db import models
 from django.shortcuts import redirect
 from django.utils.datastructures import MultiValueDictKeyError
 
-from global_fun import print_with_enters, print_Post, print_session
+from global_fun import print_with_enters, print_Post, print_session, change_QuerySet_from_db_to_list
 from organizations.models import Dorm
 from rental.models.DBmodels.Item import Item
 from users.models import CustomUser
@@ -31,44 +31,24 @@ class RentItem(models.Model):
 
     @staticmethod
     def turn_back(request):
-        # todo finish this
         t = time.localtime()
         returnHour = time.strftime("%H:%M:%S", t)
-
-        # rentItem = RentItem.objects.filter(user=user, dorm=dorm, item_id=itemToRent.id, rentalDate=rentalDate, rentHour=rentHour)
-        # itemToRent = Item.objects.filter(dorm=dorm, name=itemName, number=request.POST["items"])[0]
-
-        rentItemlog = RentItem.objects.filter(user=request.user, item__name=request.session["name_item_to_rent"], returnHour=None)[0]
+        rentItemlog = \
+            RentItem.objects.filter(user=request.user, item__name=request.session["name_item_to_rent"],
+                                    returnHour=None)[0]
         rentItemlog.returnHour = returnHour
         rentItemlog.save()
 
+        itemsToRent = Item.objects.filter(id=rentItemlog.item_id)
+        print_with_enters(itemsToRent)
         itemToRent = Item.objects.filter(id=rentItemlog.item_id)[0]
         itemToRent.isAvailable = True
         itemToRent.save()
 
-
-
-
-
-        # POST:
-        # csrfmiddlewaretoken = > qifSrFNNGCBBfiQBpxJnNBpcHkXR7QFZeXseGrQKzncIjJ0hFpe9cM7AyMS61o0C
-        # submit = > zwróć
-        #
-        #
-        # session:
-        # organization_id = > 1
-        # dorm_id = > 1
-        # _auth_user_id = > 11
-        # _auth_user_backend = > django.contrib.auth.backends.ModelBackend
-        # _auth_user_hash = > 80676830
-        # cc69d2c8f7ce57034c0e1879c878c9ce
-        # name_item_to_rent = > vacuum
-        # cleaner
-
+        request.session["last_rent_item"] = itemToRent.name
 
     @staticmethod
     def rent(request: WSGIRequest):
-
 
         user, dorm, itemName, rentalDate, rentHour = RentItem._collect_data_for_RentItem(request)
 
@@ -81,7 +61,6 @@ class RentItem(models.Model):
         itemToRent.save()
 
         request.session["last_rent_item"] = itemName
-
 
     @staticmethod
     def _collect_data_for_RentItem(request):
@@ -103,10 +82,14 @@ class RentItem(models.Model):
         dorm = Dorm.objects.filter(id=dormID)[0]
         itemName = request.session['name_item_to_rent']
 
+        areAvaible = Item.objects.filter(dorm=dorm, name=itemName)
+        ItemsWithFalseIsAvaibleids = areAvaible.filter(isAvailable=False).values_list("id")
 
-        if False in Item.objects.filter(dorm=dorm, name=itemName).values_list("isAvailable")[0]:
+        if len(RentItem.objects.filter(user=request.user, returnHour=None, item_id__in=ItemsWithFalseIsAvaibleids)) == 0:
+            return False
+        areAvaible = change_QuerySet_from_db_to_list(areAvaible, "isAvailable")
+
+        if False in areAvaible:
             return True
         else:
             return False
-
-

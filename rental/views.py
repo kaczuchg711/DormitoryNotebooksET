@@ -53,10 +53,9 @@ def create_base_view(request):
 
     rentData = zip(dates, userNames, userLastNames, roomUserNumbers, rentHour, returnHour)
 
-
-
-
     availableItems = Item.objects.filter(dorm_id=dormId, isAvailable=True, name=itemName)
+
+    print_with_enters("out RentItem.user_already_renting(request) => ", RentItem.user_already_renting(request))
 
     if RentItem.user_already_renting(request):
         form = TurnBackForm()
@@ -67,12 +66,11 @@ def create_base_view(request):
         buttonString = "wypożycz"
         formAction = "rentItem"
 
-
     context = {
         'rentData': rentData,
         'availableItemsForm': form,
         'buttonString': buttonString,
-        'formAction' : formAction
+        'formAction': formAction
     }
 
     return render(request, "rental/rental.html", context)
