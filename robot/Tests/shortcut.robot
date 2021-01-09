@@ -12,7 +12,7 @@ Shortcut
     Normal loging  1  DS B1 Bydgoska  student1  pomidorowa
     Click button  xpath=/html/body/section/div/div/div[5]/form/button
     Sleep  1
-        Pause Execution
+    Pause Execution
 
-    Click button  xpath=/html/body/section/div/div/form/input[2]
+#    Click button  xpath=/html/body/section/div/div/form/input[2]
     Exitt

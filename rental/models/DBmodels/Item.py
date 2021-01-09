@@ -3,7 +3,6 @@ from organizations.models import Dorm
 
 
 class Item(models.Model):
-    # todo make functionality with change isAvailable
     name = models.CharField(max_length=255)
     number = models.IntegerField(default=0)
     dorm = models.ForeignKey(Dorm, on_delete=models.CASCADE)

@@ -16,6 +16,7 @@ def get_choice_view(request):
     itemsInDorm = Item.objects.filter(dorm_id=dorm_id).values_list("name")
     itemsInDorm = make_unique_list(itemsInDorm)
     itemsInDorm = _unpack_from_tuples(itemsInDorm)
+    itemsInDorm.sort()
 
     context = {
         "itemsInDorm": itemsInDorm

@@ -8,12 +8,13 @@ from django.utils.datastructures import MultiValueDictKeyError
 from global_fun import print_with_enters
 from rental.models.DBmodels.RentItem import RentItem
 from rental.models.DBmodels.Item import Item
-from rental.forms import RentForm
+from rental.forms import RentForm, TurnBackForm
 
 
 @login_required(redirect_field_name='', login_url='/')
 def create_base_view(request):
     # todo check itemName. The users are really bad
+    # todo clear code
     # user choose item for rent
     try:
         itemName = request.POST['button']
@@ -28,7 +29,6 @@ def create_base_view(request):
 
     dormId = request.session.get('dorm_id')
 
-    # todo change this when you do this fun with available items
     itemsInDorm = Item.objects.filter(dorm_id=dormId, name=itemName)
     itemsId = list()
 
@@ -36,6 +36,7 @@ def create_base_view(request):
         itemsId.append(item.id)
 
     rentItemLogs = RentItem.objects.filter(dorm_id=dormId, item_id__in=itemsId)
+
     dates = [row.rentalDate.isoformat() for row in rentItemLogs]
     users = [i.user for i in rentItemLogs]
     userNames = [x.first_name for x in users]
@@ -52,18 +53,26 @@ def create_base_view(request):
 
     rentData = zip(dates, userNames, userLastNames, roomUserNumbers, rentHour, returnHour)
 
+
+
+
     availableItems = Item.objects.filter(dorm_id=dormId, isAvailable=True, name=itemName)
 
-    # todo check user already rent something
+    if RentItem.user_already_renting(request):
+        form = TurnBackForm()
+        buttonString = "zwróć"
+        formAction = "takeBack"
+    else:
+        form = RentForm(availableItems)
+        buttonString = "wypożycz"
+        formAction = "rentItem"
 
-    form = RentForm(availableItems)
-
-    print_with_enters(form)
 
     context = {
         'rentData': rentData,
         'availableItemsForm': form,
-        'buttonString': "wypożycz"
+        'buttonString': buttonString,
+        'formAction' : formAction
     }
 
     return render(request, "rental/rental.html", context)

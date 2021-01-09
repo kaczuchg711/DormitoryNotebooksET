@@ -37,6 +37,6 @@ urlpatterns = [
     path('set_organization/', Organization.set_organization, name='set_organization'),
     path('login/', securityViews.log_in, name="login"),
     path('logout/', authViews.LogoutView.as_view(template_name='security/home.html'), name='logout'),
-    path('rentItem/', RentItem.rent, name='rentItem'),
+    path('rentItem/', RentItem.decideAboutRent, name='decideAboutRent'),
     path('create_basic_db/', create_basic_db, name='create_basic_db')
 ]
