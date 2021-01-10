@@ -8,11 +8,11 @@ Choose item to rent
     Select From List By Label  xpath=//*[@id="id_items"]  ${number with item name}
 
 Rent selected item
-    Click button  xpath=/html/body/div[2]/form/input[2]
+    Click button  xpath=/html/body/div[2]/form/button
     Wait Until Element Is Visible  xpath=/html/body/h2
 
 Turn Back
-    Click button  xpath=/html/body/div[2]/form/input[2]
+    Click button  xpath=/html/body/div[2]/form/button
     Page Should Contain Element  xpath=//*[@id="id_items"]
-    Page Should Contain Element  xpath=/html/body/div[2]/form/input[2]
+    Page Should Contain Element  xpath=/html/body/div[2]/form/button
 

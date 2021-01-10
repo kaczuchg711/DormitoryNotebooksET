@@ -7,30 +7,25 @@
 {% endblock individual_head %}
 
 {% block content %}
+
     {% block data %}
         <h2>Wypożyczalnia</h2>
-
         <div class="table_container">
             <table class="table table-striped text-center">
                 <thead>
                 <tr>
-                    <th scope="col">data</th>
-                    <th scope="col">imię</th>
+                    <th scope="col">data</th><th scope="col">imię</th>
                     <th scope="col">nazwisko</th>
                     <th scope="col">numer pokoju</th>
                     <th scope="col">godzina pobrania</th>
                     <th scope="col">godzina oddania</th>
                 </tr>
                 </thead>
-                {% for i in rentData %}
+                {% for row in rentData %}
                     <tr>
-                        <th scope="col">{{ i.0 }}</th>
-                        <th scope="col">{{ i.1 }}</th>
-                        <th scope="col">{{ i.2 }}</th>
-                        <th scope="col">{{ i.3 }}</th>
-                        <th scope="col">{{ i.4 }}</th>
-                        <th scope="col">{{ i.5 }}</th>
-                        <th scope="col">{{ i.6 }}</th>
+                        {% for cell in row %}
+                            <th scope="col">{{ cell }}</th>
+                        {% endfor %}
                     </tr>
                 {% endfor %}
             </table>
@@ -38,13 +33,13 @@
     {% endblock data %}
 
     {% block input %}
-            <div style="text-align: center">
-                <form class="align-items-center center-div"
-                      action={% url 'decideAboutRent' %} method="post">{% csrf_token %}
-                    {{ availableItemsForm.items }}
-                    <input type="submit" name="submit" value="{{ buttonString }}">
-                </form>
-            </div>
+        <div style="text-align: center">
+            <form class="align-items-center center-div"
+                  action={% url 'decideAboutRent' %} method="post">{% csrf_token %}
+                {{ availableItemsForm.items }}
+                <button type="submit" name="submit" value="{{ formAction }}">{{ buttonString }}</button>
+            </form>
+        </div>
     {% endblock input %}
 
 {% endblock content %}

@@ -21,41 +21,39 @@ class RentItem(models.Model):
     returnHour = models.TimeField(default=None, null=True)
 
     @classmethod
-    def decideAboutRent(cls, request: WSGIRequest):
-        if request.POST["submit"] == "zwróć":
+    def decide_about_rent(cls, request):
+        print_Post(request)
+        if request.POST["submit"] == "turnBack":
             cls.turn_back(request)
-        if request.POST["submit"] == "wypożycz":
+        elif request.POST["submit"] == "rentItem":
             cls.rent(request)
 
         return redirect("rent")
 
-    @staticmethod
-    def turn_back(request):
+    @classmethod
+    def turn_back(cls, request):
         t = time.localtime()
         returnHour = time.strftime("%H:%M:%S", t)
-        rentItemlog = \
-            RentItem.objects.filter(user=request.user, item__name=request.session["name_item_to_rent"],
-                                    returnHour=None)[0]
-        rentItemlog.returnHour = returnHour
-        rentItemlog.save()
+        itemToRentName = request.session["name_item_to_rent"]
+        rentItemLog = cls.objects.filter(user=request.user, item__name=itemToRentName, returnHour=None)[0]
+        rentItemLog.returnHour = returnHour
+        rentItemLog.save()
 
-        itemsToRent = Item.objects.filter(id=rentItemlog.item_id)
-        print_with_enters(itemsToRent)
-        itemToRent = Item.objects.filter(id=rentItemlog.item_id)[0]
+        itemToRent = Item.objects.filter(id=rentItemLog.item_id)[0]
         itemToRent.isAvailable = True
         itemToRent.save()
 
         request.session["last_rent_item"] = itemToRent.name
 
-    @staticmethod
-    def rent(request: WSGIRequest):
+    @classmethod
+    def rent(cls, request):
 
-        user, dorm, itemName, rentalDate, rentHour = RentItem._collect_data_for_RentItem(request)
+        user, dorm, itemName, rentalDate, rentHour = cls._collect_data_for_RentItem(request)
 
         itemToRent = Item.objects.filter(dorm=dorm, name=itemName, number=request.POST["items"])[0]
 
-        rentItem = RentItem(user=user, dorm=dorm, item_id=itemToRent.id, rentalDate=rentalDate, rentHour=rentHour)
-        RentItem(user=user, dorm=dorm, item_id=itemToRent.id, rentalDate=rentalDate, rentHour=rentHour)
+        rentItem = cls(user=user, dorm=dorm, item_id=itemToRent.id, rentalDate=rentalDate, rentHour=rentHour)
+        cls(user=user, dorm=dorm, item_id=itemToRent.id, rentalDate=rentalDate, rentHour=rentHour)
         rentItem.save()
         itemToRent.isAvailable = False
         itemToRent.save()
@@ -85,7 +83,8 @@ class RentItem(models.Model):
         areAvaible = Item.objects.filter(dorm=dorm, name=itemName)
         ItemsWithFalseIsAvaibleids = areAvaible.filter(isAvailable=False).values_list("id")
 
-        if len(RentItem.objects.filter(user=request.user, returnHour=None, item_id__in=ItemsWithFalseIsAvaibleids)) == 0:
+        if len(RentItem.objects.filter(user=request.user, returnHour=None,
+                                       item_id__in=ItemsWithFalseIsAvaibleids)) == 0:
             return False
         areAvaible = change_QuerySet_from_db_to_list(areAvaible, "isAvailable")
 
