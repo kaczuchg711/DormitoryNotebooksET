@@ -14,7 +14,6 @@ from users.models import CustomUser
 
 class RentItem(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    dorm = models.ForeignKey(Dorm, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE, default=None)
     rentalDate = models.DateField(default=None)
     rentHour = models.TimeField(default=None)
@@ -52,8 +51,7 @@ class RentItem(models.Model):
 
         itemToRent = Item.objects.filter(dorm=dorm, name=itemName, number=request.POST["items"])[0]
 
-        rentItem = cls(user=user, dorm=dorm, item_id=itemToRent.id, rentalDate=rentalDate, rentHour=rentHour)
-        cls(user=user, dorm=dorm, item_id=itemToRent.id, rentalDate=rentalDate, rentHour=rentHour)
+        rentItem = cls(user=user, item_id=itemToRent.id, rentalDate=rentalDate, rentHour=rentHour)
         rentItem.save()
         itemToRent.isAvailable = False
         itemToRent.save()
@@ -75,7 +73,6 @@ class RentItem(models.Model):
 
     @staticmethod
     def user_already_renting(request: WSGIRequest):
-
         dormID = request.session.get("dorm_id")
         dorm = Dorm.objects.filter(id=dormID)[0]
         itemName = request.session['name_item_to_rent']

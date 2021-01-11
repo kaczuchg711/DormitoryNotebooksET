@@ -14,41 +14,41 @@ Rent
     Rent selected item
     Turn Back
     Exitt
-#
-#When second user already renting then first user should be able rent this same kind thing
-#    Startt
-#    First User rent something
-#    Log out
-#    Normal loging  1  DS B1 Bydgoska  tkacza  pomidorowa
-#    Go to the vacum cleaner rent page
-#    Page Should Contain Element  xpath=/html/body/div[2]/form/button
-#    Log out
-#    Normal loging  1  DS B1 Bydgoska  student1  pomidorowa
-#    Go to the vacum cleaner rent page
-#    Turn Back
-#    Exitt
-#
-#When second user already renting and first already reting somethink diffrent then first user should be able rent this same kind thing
-#    Startt
-#    First User rent something
-#    Log out
-#
-#    Normal loging  1  DS B1 Bydgoska  tkacza  pomidorowa
-#    Go to the dryer rent page
-#    Rent drayer
-#    Go Back
-#
-#    Go to the vacum cleaner rent page
-#    Page Should Contain Element  xpath=/html/body/div[2]/form/button
-#    Go Back
-#    Go to the dryer rent page
-#    Turn Back
-#    Log out
-#
-#    Normal loging  1  DS B1 Bydgoska  student1  pomidorowa
-#    Go to the vacum cleaner rent page
-#    Turn Back
-#    Exitt
+
+When second user already renting then first user should be able rent this same kind thing
+    Startt
+    First User rent something
+    Log out
+    Normal loging  1  DS B1 Bydgoska  tkacza  pomidorowa
+    Go to the vacum cleaner rent page
+    Page Should Contain Element  xpath=/html/body/div[2]/form/button
+    Log out
+    Normal loging  1  DS B1 Bydgoska  student1  pomidorowa
+    Go to the vacum cleaner rent page
+    Turn Back
+    Exitt
+
+When second user already renting and first already reting somethink diffrent then first user should be able rent this same kind thing
+    Startt
+    First User rent something
+    Log out
+
+    Normal loging  1  DS B1 Bydgoska  tkacza  pomidorowa
+    Go to the dryer rent page
+    Rent drayer
+    Go Back
+
+    Go to the vacum cleaner rent page
+    Page Should Contain Element  xpath=/html/body/div[2]/form/button
+    Go Back
+    Go to the dryer rent page
+    Turn Back
+    Log out
+
+    Normal loging  1  DS B1 Bydgoska  student1  pomidorowa
+    Go to the vacum cleaner rent page
+    Turn Back
+    Exitt
 
 
 *** keywords ***

@@ -19,3 +19,4 @@ def _prepare_organization_data(request):
         'organizationsAcronymsAndPathToIMG': zip(acronyms,imgPath)
     }
     return context
+

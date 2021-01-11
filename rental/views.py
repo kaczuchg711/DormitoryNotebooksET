@@ -22,7 +22,7 @@ def create_base_view(request):
 
     dormId = request.session.get('dorm_id')
     itemsIds = _get_items_list(dormId, itemName)
-    rentData = _prepare_rent_data(dormId, itemsIds)
+    rentData = _prepare_rent_data(itemsIds)
     form, buttonString, formAction = _get_form_information_depend_on_avaiableItems(request, dormId, itemName)
 
     context = {
@@ -56,8 +56,8 @@ def _get_items_list(dormId, itemName):
     return itemsId
 
 
-def _prepare_rent_data(dormId, itemsIds):
-    rentItemLogs = RentItem.objects.filter(dorm_id=dormId, item_id__in=itemsIds)
+def _prepare_rent_data(itemsIds):
+    rentItemLogs = RentItem.objects.filter(item_id__in=itemsIds)
 
     dates = [row.rentalDate.isoformat() for row in rentItemLogs]
     users = [i.user for i in rentItemLogs]
