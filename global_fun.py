@@ -14,7 +14,8 @@ def change_QuerySet_from_db_to_list(querySet, column_name):
 
 def print_with_enters(*valuses):
     print("\n" * 3)
-    print(*valuses)
+    for val in valuses:
+        print(val)
     print("\n" * 3)
 
 

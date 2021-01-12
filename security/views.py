@@ -1,5 +1,4 @@
-
-
+from MySQLdb._exceptions import IntegrityError
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.forms import models
@@ -7,13 +6,14 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 from ipware import get_client_ip
 
-from global_fun import print_with_enters
+from global_fun import print_with_enters, print_Post, print_session
 from organizations.models import Organization, Dorm
 from organizations import views as organizationsView
 
-from security.forms import LoginForm
+from security.forms import LoginForm, registrationForm
 from security.models.fun import create_user_to_log_in
 from security.models.DBmodels.BlockedUsers import BlockedUsers
+from users.models import CustomUser
 
 
 def get_home_view(request):
@@ -65,7 +65,6 @@ def _get_authenticate_user(request):
 
 
 def _data_ok(request, user: User):
-
     client_ip, is_routable = get_client_ip(request)
 
     try:
@@ -96,7 +95,6 @@ def _data_ok(request, user: User):
         if LoginUser.check_requirement(user, organizationId, dormName):
             return True
 
-
     if blockedUser is None:
         BlockedUsers.create_blocked_user(request)
     else:
@@ -105,3 +103,27 @@ def _data_ok(request, user: User):
 
     messages.add_message(request, messages.INFO, "wrong data")
     return False
+
+
+def get_registration_view(request):
+    organization_id = request.session["organization_id"]
+    organization = Organization.objects.filter(id=organization_id)[0]
+    organizations_dorms_names = organization.get_dorms_names()
+    form = registrationForm(organizations_dorms_names)
+    context = {
+        "form": form
+    }
+    return render(request, template_name="security/registration.html", context=context)
+
+
+def register(request):
+    try:
+        user = CustomUser.objects.create_user(password=request.POST["password1"], first_name=request.POST["first_name"],
+                                          last_name=request.POST["last_name"], email=request.POST["email"],
+                                          room_number=request.POST["room"])
+
+        user.save()
+    except Exception:
+        return redirect("registration")
+
+    return redirect("organization")

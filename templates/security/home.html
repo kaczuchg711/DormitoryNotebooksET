@@ -12,7 +12,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <form id='change-organization-form' action={% url 'organization' %} method="post"> {% csrf_token %}
+                        <form id='change-organization-form'
+                              action={% url 'organization' %} method="post"> {% csrf_token %}
                             <button id='change-organization-button' name='organization' class="btn bg-transparent ">
                                 <img class="img-fluid rounded mx-auto d-block" src="{% static  organizationLogoPath %}"
                                      alt="logo">
@@ -36,14 +37,15 @@
 
                             <input type="submit" value="Submit" name="submit">
                         </form>
-
+                        <br>
                         <div class="registration_blue_bar">
 
-                            <p>Nie masz konta ?</p>
-                            <button>Zarejstruj</button>
+                            <form action={% url "registration" %}>
+                                <p>Nie masz konta ?</p>
+                                <button>Zarejestruj</button>
+                            </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>

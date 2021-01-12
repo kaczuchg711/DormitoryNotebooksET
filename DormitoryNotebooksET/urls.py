@@ -29,6 +29,7 @@ from security.basicdb import create_basic_db
 urlpatterns = [
     # views
     path('', securityViews.get_home_view, name='index'),
+    path('registration', securityViews.get_registration_view, name='registration'),
     path('admin/', admin.site.urls),
     path('choice/', choiceViews.get_choice_view, name='choice'),
     path('rent/', rentalViews.create_base_view, name='rent'),
@@ -38,5 +39,6 @@ urlpatterns = [
     path('login/', securityViews.log_in, name="login"),
     path('logout/', authViews.LogoutView.as_view(template_name='security/home.html'), name='logout'),
     path('rentItem/', RentItem.decide_about_rent, name='decideAboutRent'),
-    path('create_basic_db/', create_basic_db, name='create_basic_db')
+    path('create_basic_db/', create_basic_db, name='create_basic_db'),
+    path('register/', securityViews.register, name='register')
 ]

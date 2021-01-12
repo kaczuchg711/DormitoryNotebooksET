@@ -1,0 +1,34 @@
+{% extends "main.html" %}
+{% load static %}
+{% block individual_head %}
+    <title>Rejestracja</title>
+    <link rel="Stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
+{% endblock individual_head %}
+{% block content %}
+    <h2>Rejestracja</h2>
+    <div class="container">
+
+        <section class="login-form">
+            <form action={% url "register" %} method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <p>
+                        {{ field.label_tag }}<br>
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small style="color: grey">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </p>
+                {% endfor %}
+                <button class="btn-primary" type="submit">Sign up</button>
+            </form>
+
+        </section>
+    </div>
+
+
+{% endblock content %}
+
