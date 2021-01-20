@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.2 (Python 3.8.5 on linux)" generated="20210120 21:48:07.143" rpa="true">
+<suite id="s1" name="Shortcut" source="/home/tkacza/AAA/programing/DormNotebooks/robot/Tests/shortcut.robot">
+<test id="s1-t1" name="Rent Prezentation">
+<kw name="Startt" library="login">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>${login adress page}</arg>
+<arg>firefox</arg>
+</arguments>
+<msg timestamp="20210120 21:48:07.274" level="INFO">Opening browser 'firefox' to base url 'http://127.0.0.1:8000/'.</msg>
+<msg timestamp="20210120 21:48:07.275" level="INFO">Firefox driver log is always forced to to: /home/tkacza/AAA/programing/DormNotebooks/robot/Tests/geckodriver-2.log</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="FAIL" starttime="20210120 21:48:08.278" endtime="20210120 21:48:08.278"></status>
+</kw>
+<msg timestamp="20210120 21:48:08.278" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Execution terminated by signal</msg>
+<status status="FAIL" starttime="20210120 21:48:07.274" endtime="20210120 21:48:08.279"></status>
+</kw>
+<status status="FAIL" starttime="20210120 21:48:07.274" endtime="20210120 21:48:08.279"></status>
+</kw>
+<status status="FAIL" starttime="20210120 21:48:07.273" endtime="20210120 21:48:08.279" critical="yes">Execution terminated by signal</status>
+</test>
+<status status="FAIL" starttime="20210120 21:48:07.145" endtime="20210120 21:48:08.280"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tasks</stat>
+<stat pass="0" fail="1">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="Shortcut">Shortcut</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20210120 21:48:08.278" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Execution terminated by signal</msg>
+</errors>
+</robot>

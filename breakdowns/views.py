@@ -9,11 +9,15 @@ from global_fun import *
 
 
 def create_breakdown_view(request):
+    isPorter = True if request.user.is_in_group("porters") else False
+    # todo create buttons to set breakdown as removed
     breakdownData = _prepare_breakdown_data(request)
     form = BreakdownForm()
+
     context = {
         'breakdownData': breakdownData,
         'form': form,
+        'isPorter': isPorter
     }
 
     return render(request, "breakdowns/breakdowns.html", context=context)
@@ -50,7 +54,8 @@ def _prepare_breakdown_data(request):
     roomUserNumbers = [user.room_number for user in users]
     description = [row.description for row in breakdownsLogs]
     stateds_db = [row.isSolved for row in breakdownsLogs]
-    print_with_enters(stateds_db)
     stateds = ["do usunięcia" if stade is False else "usunięta" for stade in stateds_db]
-    rentData = zip(dates, userNames, userLastNames, roomUserNumbers, description, stateds)
+    # form.
+    bt = ["<button>x</button>", "<button>x</button>", "<button>x</button>"]
+    rentData = zip(dates, userNames, userLastNames, roomUserNumbers, description, stateds,bt)
     return rentData

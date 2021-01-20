@@ -9,6 +9,9 @@ Rent Prezentation
     Startt
     Normal loging  1  DS B1 Bydgoska  student1  pomidorowa
     Go to request breakdown page
+    log out
+    Normal loging  1  DS B1 Bydgoska  porter1  pomidorowa
+    Go to request breakdown page
     pause execution
     Exitt
 

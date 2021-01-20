@@ -20,6 +20,9 @@
                     <th scope="col">numer pokoju</th>
                     <th scope="col">opis</th>
                     <th scope="col">stan</th>
+                    {% if isPorter %}
+                        <th scope="col">usuń awarie</th>
+                    {% endif %}
                 </tr>
                 </thead>
                 {% for row in breakdownData %}
