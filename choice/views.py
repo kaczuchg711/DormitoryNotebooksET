@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.contrib.auth import views as auth_views
 
-from global_fun import print_with_enters, print_session, change_QuerySet_from_db_to_list, make_unique_list
+from global_fun import print_with_enters, print_session, get_column_values, make_unique_list
 from rental.models.DBmodels.Item import Item
 
 
@@ -12,7 +12,6 @@ from rental.models.DBmodels.Item import Item
 def get_choice_view(request):
     dorm_id = request.session["dorm_id"]
     itemsInDorm = _prepare_items_in_dorm(dorm_id)
-
     context = {
         "itemsInDorm": itemsInDorm
     }

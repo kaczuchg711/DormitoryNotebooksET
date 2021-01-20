@@ -23,6 +23,7 @@ from security import views as securityViews
 from organizations import views as organizationsViews
 from choice import views as choiceViews
 from rental import views as rentalViews
+from breakdowns import views as breakdownsViews
 from organizations.models import Organization
 from security.basicdb import create_basic_db
 
@@ -34,6 +35,7 @@ urlpatterns = [
     path('choice/', choiceViews.get_choice_view, name='choice'),
     path('rent/', rentalViews.create_base_view, name='rent'),
     path('organization/', organizationsViews.get_organization_view, name='organization'),
+    path('breakdowns/', breakdownsViews.create_breakdown_view, name='breakdowns'),
     # fun
     path('set_organization/', Organization.set_organization, name='set_organization'),
     path('login/', securityViews.log_in, name="login"),

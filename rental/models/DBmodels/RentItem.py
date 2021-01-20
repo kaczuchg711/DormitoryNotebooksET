@@ -6,7 +6,7 @@ from django.db import models
 from django.shortcuts import redirect
 from django.utils.datastructures import MultiValueDictKeyError
 
-from global_fun import print_with_enters, print_Post, print_session, change_QuerySet_from_db_to_list
+from global_fun import print_with_enters, print_Post, print_session, get_column_values
 from organizations.models import Dorm
 from rental.models.DBmodels.Item import Item
 from users.models import CustomUser
@@ -83,7 +83,7 @@ class RentItem(models.Model):
         if len(RentItem.objects.filter(user=request.user, returnHour=None,
                                        item_id__in=ItemsWithFalseIsAvaibleids)) == 0:
             return False
-        areAvaible = change_QuerySet_from_db_to_list(areAvaible, "isAvailable")
+        areAvaible = get_column_values(areAvaible, "isAvailable")
 
         if False in areAvaible:
             return True

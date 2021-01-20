@@ -1,0 +1,46 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block individual_head %}
+    <link rel="Stylesheet" type="text/css" href="{% static 'css/rental/rental.css' %}"/>
+    <title>Awarie</title>
+{% endblock individual_head %}
+
+{% block content %}
+
+    {% block data %}
+        <h2>Awarie</h2>
+        <div class="table_container">
+            <table class="table table-striped text-center">
+                <thead>
+                <tr>
+                    <th scope="col">data</th>
+                    <th scope="col">imię</th>
+                    <th scope="col">nazwisko</th>
+                    <th scope="col">numer pokoju</th>
+                    <th scope="col">Opis</th>
+                    <th scope="col">stan</th>
+                </tr>
+                </thead>
+                {% for row in breakdownData %}
+                    <tr>
+                        {% for cell in row %}
+                            <th scope="col">{{ cell }}</th>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endblock data %}
+
+    {% block input %}
+        <div style="text-align: center">
+{#            <form class="align-items-center center-div"#}
+{#                  action={% url 'decideAboutRent' %} method="post">{% csrf_token %}#}
+{#                {{ availableItemsForm.items }}#}
+{#                <button type="submit" name="submit" value="{{ formAction }}">{{ buttonString }}</button>#}
+{#            </form>#}
+        </div>
+    {% endblock input %}
+
+{% endblock content %}

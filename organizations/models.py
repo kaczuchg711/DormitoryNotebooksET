@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 from django.shortcuts import redirect, render
 
-from global_fun import change_QuerySet_from_db_to_list
+from global_fun import get_column_values
 
 
 class Organization(models.Model):
@@ -19,7 +19,7 @@ class Organization(models.Model):
     @staticmethod
     def get_every_organizations_acronyms():
         querySet = Organization.objects.values('acronym')
-        acronyms = change_QuerySet_from_db_to_list(querySet, 'acronym')
+        acronyms = get_column_values(querySet, 'acronym')
         return acronyms
 
     @staticmethod
@@ -39,7 +39,7 @@ class Organization(models.Model):
 
     def get_dorms_names(self):
         organizationsDormitoriesIdsQS = Associate_with_Dorms.objects.values('id_dorm').filter(id_organization=self.id)
-        organizationsDormitoriesIds = change_QuerySet_from_db_to_list(organizationsDormitoriesIdsQS, 'id_dorm')
+        organizationsDormitoriesIds = get_column_values(organizationsDormitoriesIdsQS, 'id_dorm')
 
         DormsObjects = Dorm.objects.all()
         querySets = []

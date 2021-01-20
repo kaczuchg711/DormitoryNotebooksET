@@ -15,6 +15,5 @@ Register
     Input Text  xpath=//*[@id="id_room"]  206
     Input Text  xpath=//*[@id="id_password1"]  pomidorowa
     Input Text  xpath=//*[@id="id_password2"]  pomidorowa
-#    CLick Button  xpath=/html/body/div/section/form/button
-#    BuiltIn.Sleep  2
-#    Close Browser
+    CLick Button  xpath=/html/body/div/section/form/button
+    Close Browser
