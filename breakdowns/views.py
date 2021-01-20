@@ -1,19 +1,43 @@
 from MySQLdb.converters import NoneType
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from MySQLdb import Date
 
 # Create your views here.
+from breakdowns.forms import BreakdownForm
 from breakdowns.models import Breakdowns
 from global_fun import *
 
 
 def create_breakdown_view(request):
     breakdownData = _prepare_breakdown_data(request)
-
+    form = BreakdownForm()
     context = {
         'breakdownData': breakdownData,
+        'form': form,
     }
 
     return render(request, "breakdowns/breakdowns.html", context=context)
+
+
+def request_breakdown(request):
+    print_Post(request)
+    print_session(request)
+
+    requestDate, user_id, description, dorm_id = _prepare_breakdown_request_data(request)
+
+    breakdown = Breakdowns(requestDate=requestDate, user_id=user_id, description=description, isSolved=False,
+                           dorm_id=dorm_id)
+    breakdown.save()
+
+    return redirect(create_breakdown_view)
+
+
+def _prepare_breakdown_request_data(request):
+    description = request.POST["description"]
+    requestDate = Date.today()
+    user_id = request.user.id
+    dorm_id = request.session["dorm_id"]
+    return requestDate, user_id, description, dorm_id
 
 
 def _prepare_breakdown_data(request):

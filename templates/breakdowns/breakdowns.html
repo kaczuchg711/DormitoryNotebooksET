@@ -18,7 +18,7 @@
                     <th scope="col">imię</th>
                     <th scope="col">nazwisko</th>
                     <th scope="col">numer pokoju</th>
-                    <th scope="col">Opis</th>
+                    <th scope="col">opis</th>
                     <th scope="col">stan</th>
                 </tr>
                 </thead>
@@ -34,13 +34,18 @@
     {% endblock data %}
 
     {% block input %}
-        <div style="text-align: center">
-{#            <form class="align-items-center center-div"#}
-{#                  action={% url 'decideAboutRent' %} method="post">{% csrf_token %}#}
-{#                {{ availableItemsForm.items }}#}
-{#                <button type="submit" name="submit" value="{{ formAction }}">{{ buttonString }}</button>#}
-{#            </form>#}
-        </div>
+        <section>
+            <div class="row">
+                <div class="col-sm-12" style="text-align: center">
+                    <form class="align-items-center center-div"
+                          action={% url "request_breakdown" %} method="post">{% csrf_token %}
+                        {{ form.description }}
+                        <br>
+                        <button type="submit" name="submit">Zgłoś awarię</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     {% endblock input %}
 
 {% endblock content %}
