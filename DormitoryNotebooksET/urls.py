@@ -44,5 +44,6 @@ urlpatterns = [
     path('rentItem/', RentItem.decide_about_rent, name='decideAboutRent'),
     path('create_basic_db/', create_basic_db, name='create_basic_db'),
     path('request_breakdown/', breakdownsViews.request_breakdown, name='request_breakdown'),
+    path('remove_breakdown/', breakdownsViews.remove_breakdown, name='remove_breakdown'),
     path('register/', securityViews.register, name='register')
 ]

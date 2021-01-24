@@ -12,3 +12,8 @@ class Breakdowns(models.Model):
     isSolved = models.BooleanField(default=False)
     dorm = models.ForeignKey(Dorm, on_delete=models.CASCADE)
 
+    @staticmethod
+    def remove_breakdown(id):
+        breakdown = Breakdowns.objects.filter(id=id)[0]
+        breakdown.isSolved = True
+        breakdown.save()

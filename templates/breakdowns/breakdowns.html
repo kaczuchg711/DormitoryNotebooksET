@@ -28,7 +28,15 @@
                 {% for row in breakdownData %}
                     <tr>
                         {% for cell in row %}
-                            <th scope="col">{{ cell }}</th>
+                            {% if cell.button_flag == 1 and isPorter%}
+                                <form method="post" action={% url "remove_breakdown" %}>{% csrf_token %}
+                                    <th scope="col">{{ cell }}
+                                        <button>x</button>
+                                    </th>
+                                </form>
+                            {% else %}
+                                <th scope="col">{{ cell }}</th>
+                            {% endif %}
                         {% endfor %}
                     </tr>
                 {% endfor %}
@@ -40,8 +48,8 @@
         <section>
             <div class="row">
                 <div class="col-sm-12" style="text-align: center">
-                    <form class="align-items-center center-div"
-                          action={% url "request_breakdown" %} method="post">{% csrf_token %}
+                    <form class="align-items-center center-div" method="post"
+                          action={% url "request_breakdown" %}>{% csrf_token %}
                         {{ form.description }}
                         <br>
                         <button type="submit" name="submit">Zgłoś awarię</button>

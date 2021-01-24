@@ -11,23 +11,24 @@ Breakdown
     Request breakdown
     log out
     Normal loging  1  DS B1 Bydgoska  porter1  pomidorowa
-    Go to request breakdown page
-    pause execution
-    Click Button  xpath=/html/body/div/table/tbody/tr[2]/th[7]/button
-    pause execution
+    Remove breakdown
     Exitt
 *** Keywords ***
 Remove breakdown
     Go to request breakdown page
     pause execution
-    Click Button  xpath=/html/body/div/table/tbody/tr[2]/th[7]/button
+    Click Button  xpath=/html/body/div/table/tbody/tr[last()]/th[7]/button
     pause execution
 
 Request breakdown
+    pause execution
     Go to request breakdown page
+    pause execution
     Click element  xpath=/html/body/section/div/div/form/button
+    pause execution
 
 Go to request breakdown page
+    [Arguments]  ${description}
     Click element  xpath=/html/body/section/div/div/div[2]/form/button
     Wait Until Element Is Visible  xpath=//*[@id="id_description"]
-    Input Text  xpath=//*[@id="id_description"]  przykladowy opis
+    Input Text  xpath=//*[@id="id_description"]  ${description}

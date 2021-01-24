@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from MySQLdb import Date
 
 # Create your views here.
-from breakdowns.forms import BreakdownForm
+from breakdowns.forms import BreakdownForm, RemoveBreakdownForm
 from breakdowns.models import Breakdowns
 from global_fun import *
 
@@ -21,6 +21,32 @@ def create_breakdown_view(request):
     }
 
     return render(request, "breakdowns/breakdowns.html", context=context)
+
+
+def remove_breakdown(request):
+    # todo validate this id
+    breakdown_id = request.POST['id']
+    Breakdowns.remove_breakdown(breakdown_id)
+    return redirect(create_breakdown_view)
+
+
+def _prepare_breakdown_data(request):
+    dormId = request.session.get('dorm_id')
+    breakdownsLogs = Breakdowns.objects.filter(dorm_id=dormId)
+    dates = [row.requestDate.isoformat() for row in breakdownsLogs]
+    users = [row.user for row in breakdownsLogs]
+    userNames = [user.first_name for user in users]
+    userLastNames = [user.last_name for user in users]
+    roomUserNumbers = [user.room_number for user in users]
+    description = [row.description for row in breakdownsLogs]
+    stateds_db = [row.isSolved for row in breakdownsLogs]
+    stateds = ["do usunięcia" if stade is False else "usunięta" for stade in stateds_db]
+    # form.
+    logsID = [log.id for log in breakdownsLogs]
+    removeBreakdownForms = [RemoveBreakdownForm(id) for id in logsID]
+
+    rentData = zip(dates, userNames, userLastNames, roomUserNumbers, description, stateds, removeBreakdownForms)
+    return rentData
 
 
 def request_breakdown(request):
@@ -42,20 +68,3 @@ def _prepare_breakdown_request_data(request):
     user_id = request.user.id
     dorm_id = request.session["dorm_id"]
     return requestDate, user_id, description, dorm_id
-
-
-def _prepare_breakdown_data(request):
-    dormId = request.session.get('dorm_id')
-    breakdownsLogs = Breakdowns.objects.filter(dorm_id=dormId)
-    dates = [row.requestDate.isoformat() for row in breakdownsLogs]
-    users = [row.user for row in breakdownsLogs]
-    userNames = [user.first_name for user in users]
-    userLastNames = [user.last_name for user in users]
-    roomUserNumbers = [user.room_number for user in users]
-    description = [row.description for row in breakdownsLogs]
-    stateds_db = [row.isSolved for row in breakdownsLogs]
-    stateds = ["do usunięcia" if stade is False else "usunięta" for stade in stateds_db]
-    # form.
-    bt = ["<button>x</button>", "<button>x</button>", "<button>x</button>"]
-    rentData = zip(dates, userNames, userLastNames, roomUserNumbers, description, stateds,bt)
-    return rentData
