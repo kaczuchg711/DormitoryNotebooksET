@@ -1,19 +1,42 @@
 img {
-    /*visibility: hidden;*/
     padding: 25% 25% 25% 25%;
 }
-
 
 .login-form {
     margin: auto;
     background: white;
     border-radius: 2em;
-    padding: 2em 2em 3em;
+    padding: 2em; /* Adjust the padding values as needed */
     border: solid;
     border-width: 0.15em;
+    max-width: 22%; /* Adjust the width as needed */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
 }
 
 label {
-    margin-bottom: 0px;
-    margin-top: 10px;
+    margin-bottom: 0;
+    margin-top: 1rem;
+}
+
+.container {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+button
+{
+    border-radius: 0.4rem;
+}
+
+input{
+    max-width: 90%;
+}
+
+select
+{
+    max-width: 90%;
 }

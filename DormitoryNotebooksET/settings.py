@@ -28,7 +28,7 @@ SECRET_KEY = _key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', '185.157.164.100', 'testserver','192.168.1.7']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', '185.157.164.100', 'testserver', '192.168.1.7']
 
 # Application definition
 
@@ -120,7 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join('static'),)
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = '/home/tkacza2/AAA/static_files'
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_REDIRECT_URL = "/choice"

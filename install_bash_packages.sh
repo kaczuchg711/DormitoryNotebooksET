@@ -1,0 +1,1 @@
+while read - r line; do sudo apt-get -y install "$line"; done < bashreq.txt

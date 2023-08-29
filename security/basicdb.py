@@ -13,7 +13,7 @@ from users.models import CustomUser
 
 class BasicDB:
     def __init__(self):
-        self.groups = None
+        self.groups = {}
         self.users = {}
         self.dorms = {}
 
@@ -69,12 +69,33 @@ class BasicDB:
         User_Associate_with_Dorm.associate("supervisor1", "DS B1 Bydgoska")
 
     def create_groups(self):
+
+
+        self.groups = {
+
+            "students": None,
+            "porters": None,
+            "supervisors": None
+
+        }
+        group_already_existed = False
         try:
             self.groups["students"] = Group.objects.create(name='students')
+        except:
+            Warning("Group exist")
+            self.groups["students"] = Group.objects.get(name='students')
+
+        try:
             self.groups["porters"] = Group.objects.create(name='porters')
+        except:
+            Warning("Group exist")
+            self.groups["porters"] = Group.objects.get(name='porters')
+
+        try:
             self.groups["supervisors"] = Group.objects.create(name='supervisors')
         except:
             Warning("Group exist")
+            self.groups["supervisors"] = Group.objects.get(name='supervisors')
 
     def add_user_to_group(self):
         self.groups["students"].user_set.add(self.users["student1"])

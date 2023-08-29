@@ -7,20 +7,17 @@
 {% block content %}
     <h2>Akademikowe zeszyty</h2>
     <div class="container">
-
         <section>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
-                        <form id='change-organization-form'
-                              action={% url 'organization' %} method="post"> {% csrf_token %}
+                    <div class="col-md-8">
+                        <form id='change-organization-form' action={% url 'organization' %} method="post"> {% csrf_token %}
                             <button id='change-organization-button' name='organization' class="btn bg-transparent ">
-                                <img class="img-fluid rounded mx-auto d-block" src="{% static  organizationLogoPath %}"
-                                     alt="logo">
+                                <img class="img-fluid rounded mx-auto d-block" src="{% static  organizationLogoPath %}" alt="logo">
                             </button>
                         </form>
                     </div>
-                    <div class="col-md-6, login-form">
+                    <div class="col-md-8 login-form">
                         <form action={% url "login" %} method=POST>{% csrf_token %}
                             <label>Akademik</label><br>
                             {{ form.dorms }} <br>
@@ -39,7 +36,6 @@
                         </form>
                         <br>
                         <div class="registration_blue_bar">
-
                             <form action={% url "registration" %}>
                                 <p>Nie masz konta ?</p>
                                 <button>Zarejestruj</button>
@@ -50,7 +46,4 @@
             </div>
         </section>
     </div>
-
-
 {% endblock content %}
-
